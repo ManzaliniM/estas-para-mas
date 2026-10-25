@@ -1,0 +1,650 @@
+---
+// src/components/Actividades.astro
+import CardActividad from "./CardActividad.astro";
+import Icon from "./Icon.astro";
+
+// Número de WhatsApp del grupo (Mariano) — mensaje unificado en todo el sitio
+const WA_NUMBER = "5492494377348";
+const WA_MSG =
+    "Hola%20Mariano%2C%20vi%20la%20p%C3%A1gina%20web%20de%20Est%C3%A1s%20Para%20M%C3%A1s%20y%20quiero%20empezar%20a%20entrenar.%20%C2%BFC%C3%B3mo%20hago%3F";
+
+// Lugares donde entrena el grupo (links de Google Maps pasados por Mariano)
+const MAPS = {
+    misiones: "https://maps.google.com/?q=Misiones+868,+Tandil",
+    up: "https://maps.app.goo.gl/z6i71aXL7Pn9Y5jb8",
+    plaza: "https://maps.app.goo.gl/gEm4HfCYZC9Wazg39",
+    pista: "https://maps.app.goo.gl/SJ6jLMgPDwes5ENA8",
+};
+
+// Agenda semanal consolidada (misma info que las cards, organizada por día)
+const semana = [
+    {
+        dia: "Lunes",
+        turnos: [
+            {
+                hora: "11:00",
+                actividad: "Natación",
+                lugar: "UP",
+                lugarUrl: MAPS.up,
+            },
+            {
+                hora: "13:00",
+                actividad: "Natación",
+                lugar: "UP",
+                lugarUrl: MAPS.up,
+            },
+            { hora: "14:00", actividad: "Trote y Caminata" },
+            { hora: "15:00", actividad: "Gimnasio con profesor" },
+            { hora: "16:00", actividad: "Trota con Tutto" },
+            { hora: "18:30", actividad: "Gimnasio con profesor" },
+            {
+                hora: "20:00",
+                actividad: "Trote y Caminata",
+                lugar: "Plaza EPM",
+                lugarUrl: MAPS.plaza,
+            },
+        ],
+    },
+    {
+        dia: "Martes",
+        turnos: [
+            { hora: "09:00", actividad: "Gimnasio con profesor" },
+            {
+                hora: "14:00",
+                actividad: "Ciclismo exterior · MTB",
+                lugar: "Plaza EPM",
+                lugarUrl: MAPS.plaza,
+            },
+            { hora: "18:00", actividad: "Ciclismo en Sala" },
+            { hora: "18:00–20:00", actividad: "Gimnasio con profesor" },
+            { hora: "19:00", actividad: "Ciclismo en Sala" },
+        ],
+    },
+    {
+        dia: "Miércoles",
+        turnos: [
+            {
+                hora: "11:00",
+                actividad: "Natación",
+                lugar: "UP",
+                lugarUrl: MAPS.up,
+            },
+            {
+                hora: "13:00",
+                actividad: "Natación",
+                lugar: "UP",
+                lugarUrl: MAPS.up,
+            },
+            { hora: "14:00", actividad: "Trote y Caminata" },
+            { hora: "15:00", actividad: "Gimnasio con profesor" },
+            { hora: "16:00", actividad: "Trota con Tutto" },
+            { hora: "18:30", actividad: "Gimnasio con profesor" },
+            {
+                hora: "20:00",
+                actividad: "Trote y Caminata",
+                lugar: "Plaza EPM",
+                lugarUrl: MAPS.plaza,
+            },
+        ],
+    },
+    {
+        dia: "Jueves",
+        turnos: [
+            { hora: "09:00", actividad: "Gimnasio con profesor" },
+            {
+                hora: "14:00",
+                actividad: "Ciclismo exterior · Ruta",
+                lugar: "Pista",
+                lugarUrl: MAPS.pista,
+            },
+            { hora: "18:00", actividad: "Ciclismo en Sala" },
+            { hora: "18:00–20:00", actividad: "Gimnasio con profesor" },
+            { hora: "19:00", actividad: "Ciclismo en Sala" },
+        ],
+    },
+    {
+        dia: "Viernes",
+        turnos: [
+            { hora: "13:00", actividad: "Gimnasio con profesor" },
+            { hora: "14:00", actividad: "Trote y Caminata" },
+            { hora: "16:00", actividad: "Trota con Tutto" },
+            { hora: "18:30", actividad: "Gimnasio con profesor" },
+            {
+                hora: "20:00",
+                actividad: "Trote y Caminata",
+                lugar: "Plaza EPM",
+                lugarUrl: MAPS.plaza,
+            },
+        ],
+    },
+    {
+        dia: "Sábado",
+        turnos: [
+            {
+                hora: "09:00",
+                actividad: "Natación",
+                lugar: "UP",
+                lugarUrl: MAPS.up,
+            },
+            {
+                hora: "12:00",
+                actividad: "Natación",
+                lugar: "UP",
+                lugarUrl: MAPS.up,
+            },
+            {
+                hora: "14:00",
+                actividad: "Multideporte",
+                lugar: "Plaza EPM",
+                lugarUrl: MAPS.plaza,
+            },
+        ],
+    },
+];
+---
+
+<section id="actividades" class="actividades-section">
+    <div class="container">
+        <div class="section-title-block" data-reveal>
+            <span class="section-tag">MOVIMIENTO EFICIENTE</span>
+            <h2>Nuestras <span class="highlight">Actividades</span></h2>
+            <p>
+                Entrenamos de manera inteligente, adaptándonos a tus objetivos.
+                <br />La cuota cubre todas las actividades, vos sos libre de
+                elegir a cuáles te presentás
+            </p>
+            <!-- a excepción de Natación, que requiere inscripción aparte en UP. -->
+        </div>
+
+        <div class="actividades-grid">
+            <CardActividad
+                title="Gimnasio"
+                icon="dumbbell"
+                image="/img/gimnasio.jpg"
+                description="Fuerza base y reacondicionamiento físico para todo nivel."
+                schedules={[
+                    { dias: "Lunes y Miércoles", hora: "15:00 y 18:30" },
+                    { dias: "Martes y Jueves", hora: "09:00 · 18:00 a 20:00" },
+                    { dias: "Viernes", hora: "13:00 y 18:30" },
+                ]}
+                note="Todos los turnos van acompañados por Mariano."
+                mapUrl={MAPS.misiones}
+                revealDelay={0.1}
+            />
+
+            <CardActividad
+                title="Trote y Caminata"
+                icon="runner"
+                image="/img/trote.jpg"
+                description="Del primer paso en salud a los planes de maratón, al ritmo del grupo."
+                schedules={[
+                    {
+                        dias: "Lunes, Miércoles y Viernes",
+                        hora: "16:00",
+                        lugar: "Con Tutto",
+                        lugarUrl: MAPS.misiones,
+                    },
+                    {
+                        dias: "Lunes, Miércoles y Viernes",
+                        hora: "14:00 y 20:00",
+                        lugar: "20:00 desde Plaza EPM",
+                        lugarUrl: MAPS.plaza,
+                    },
+                ]}
+                note="Las salidas de las 20:00 arrancan desde la Plaza EPM. El punto de largada se confirma cada semana en el canal del grupo."
+                mapUrl={MAPS.plaza}
+                revealDelay={0.2}
+            />
+
+            <CardActividad
+                title="Ciclismo"
+                icon="bike"
+                image="/img/bici.jpg"
+                description="Combinación de trabajo en sala y salidas de exterior por cerros y ruta."
+                schedules={[
+                    {
+                        dias: "Martes y Jueves",
+                        hora: "18:00 y 19:00",
+                        lugar: "Sala",
+                        lugarUrl: MAPS.misiones,
+                    },
+                    {
+                        dias: "Martes",
+                        hora: "14:00",
+                        lugar: "MTB · Exterior",
+                        lugarUrl: MAPS.plaza,
+                    },
+                    {
+                        dias: "Jueves",
+                        hora: "14:00",
+                        lugar: "Ruta · Exterior",
+                        lugarUrl: MAPS.pista,
+                    },
+                ]}
+                mapUrl={MAPS.misiones}
+                revealDelay={0.3}
+            />
+
+            <CardActividad
+                title="Natación"
+                icon="swimmer"
+                image="/img/natacion.jpg"
+                description="Técnica y continuidad en la pileta libre de UP."
+                schedules={[
+                    {
+                        dias: "Lunes y Miércoles",
+                        hora: "11:00 y 13:00",
+                        lugar: "UP",
+                        lugarUrl: MAPS.up,
+                    },
+                    {
+                        dias: "Sábados",
+                        hora: "09:00 y 12:00",
+                        lugar: "UP",
+                        lugarUrl: MAPS.up,
+                    },
+                ]}
+                note="También hay otros turnos disponibles en la pileta libre de UP, y clases personalizadas. Consultá."
+                mapUrl={MAPS.up}
+                revealDelay={0.4}
+            />
+        </div>
+
+        <!-- ====== AGENDA SEMANAL (organizada por días) ====== -->
+        <div class="semana-block" data-reveal>
+            <div class="semana-header">
+                <h3>
+                    LA SEMANA <span class="highlight">EN UN VISTAZO</span>
+                </h3>
+            </div>
+
+            <div class="semana-grid">
+                {
+                    semana.map((d) => (
+                        <div class="dia-card">
+                            <h4>{d.dia}</h4>
+                            <ul>
+                                {d.turnos.map((t) => (
+                                    <li>
+                                        <span class="turno-hora">{t.hora}</span>
+                                        <span class="turno-actividad">
+                                            {t.actividad}
+                                            {t.lugar && t.lugarUrl && (
+                                                <a
+                                                    class="turno-lugar"
+                                                    href={t.lugarUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    {t.lugar}
+                                                </a>
+                                            )}
+                                            {t.lugar && !t.lugarUrl && (
+                                                <span class="turno-lugar">
+                                                    {t.lugar}
+                                                </span>
+                                            )}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- Explicación del Multideporte (no es actividad con turno fijo, es modalidad flexible) -->
+            <div class="multideporte-strip" data-reveal>
+                <div class="multideporte-icon">
+                    <Icon name="loop" size="1.7rem" strokeWidth={1.6} />
+                </div>
+                <div class="multideporte-texto">
+                    <h4>EL COMBINADO DEL SÁBADO: MULTIDEPORTE</h4>
+                    <p>
+                        Nadá, pedaleá, corré. El Multideporte reúne lo mejor de
+                        las otras actividades en una sola mañana: a las 14:00,
+                        desde la Plaza EPM. No tiene un orden establecido — hay
+                        sábados que son dúatlones, otros triatlones, y otros que
+                        combinan bicicleteada y trote — todo depende de qué esté
+                        preparando el grupo y cada atleta en particular. Es una
+                        modalidad flexible, en grupo reducido: la mejor puerta
+                        de entrada para quien sueña con completar su primer
+                        triatlón.
+                    </p>
+                    <div class="multideporte-chips">
+                        <span>Dúatlón</span>
+                        <span>Triatlón</span>
+                        <span>Combinado variado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA de cierre: dudas de franjas, lugares y horarios finos se coordinan acá -->
+        <div class="actividades-cta" data-reveal>
+            <p>¿No encontrás tu horario ideal o tenés dudas? Consultanos.</p>
+            <a
+                href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cta-button"
+            >
+                <Icon name="whatsapp" size="1rem" />
+                Coordinar por WhatsApp
+                <Icon
+                    name="arrow"
+                    class="cta-arrow"
+                    size="1rem"
+                    strokeWidth={2.2}
+                />
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .actividades-section {
+        background-color: var(--color-background);
+        padding: 6rem 2rem;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section-title-block {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    h2 {
+        font-size: 3rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin: 0.5rem 0 1rem;
+    }
+
+    .section-title-block p {
+        color: var(--color-text-muted);
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .actividades-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* Desktop: 2 x 2 estable — 4 cards activas, sin una sola colgando */
+    @media (min-width: 720px) {
+        .actividades-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* ====== AGENDA SEMANAL ====== */
+    .semana-block {
+        margin-top: 4rem;
+    }
+
+    .semana-header {
+        text-align: center;
+        margin-bottom: 2.25rem;
+    }
+
+    .semana-header h3 {
+        font-size: 1.8rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin: 0 0 0.5rem;
+    }
+
+    .semana-header p {
+        color: var(--color-text-muted);
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .semana-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+
+    .dia-card {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border-strong);
+        border-top: 3px solid var(--color-brand);
+        border-radius: 10px;
+        padding: 1.4rem 1.5rem;
+        transition:
+            transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1),
+            border-color 0.25s ease,
+            background-color 0.25s ease;
+    }
+
+    .dia-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--color-border-hover);
+        background-color: var(--color-surface-raised);
+    }
+
+    .dia-card h4 {
+        font-size: 0.95rem;
+        font-weight: 900;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin: 0 0 1rem;
+        color: var(--color-brand);
+        display: inline-block;
+        transform: skewX(-6deg);
+    }
+
+    .dia-card ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+    }
+
+    .dia-card li {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding-bottom: 0.45rem;
+        border-bottom: 1px solid var(--color-divider);
+        font-size: 0.84rem;
+    }
+
+    .dia-card li:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .turno-hora {
+        color: var(--color-text);
+        font-weight: 800;
+        flex: 0 0 auto;
+        min-width: 74px;
+    }
+
+    .turno-actividad {
+        color: var(--color-text-muted);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.35rem;
+        justify-content: flex-end;
+        text-align: right;
+    }
+
+    .turno-lugar {
+        font-size: 0.6rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--color-text-subtle);
+        border: 1px solid var(--color-border-hover);
+        padding: 0.1rem 0.35rem;
+        border-radius: 3px;
+        flex: 0 0 auto;
+        text-decoration: none;
+        transition:
+            color 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    a.turno-lugar:hover {
+        color: var(--color-brand);
+        border-color: var(--color-brand);
+    }
+
+    /* ====== STRIP MULTIDEPORTE ====== */
+    .multideporte-strip {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.75rem;
+        margin-top: 2rem;
+        border: 1px solid var(--color-border-strong);
+        border-left: 4px solid var(--color-brand);
+        border-radius: 12px;
+        padding: 1.75rem 2rem;
+        background-color: var(--color-surface);
+        transition: border-color 0.3s ease;
+    }
+
+    .multideporte-strip:hover {
+        border-color: var(--color-border-hover);
+        border-left-color: var(--color-brand);
+    }
+
+    .multideporte-icon {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+        color: var(--color-brand);
+        background-color: var(--color-background-deep);
+        border: 1px solid var(--color-border-strong);
+        transform: skewX(-6deg);
+    }
+
+    .multideporte-texto h4 {
+        font-size: 1.1rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin: 0 0 0.5rem;
+    }
+
+    .multideporte-texto p {
+        color: var(--color-text-muted);
+        line-height: 1.7;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .multideporte-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.9rem;
+    }
+
+    .multideporte-chips span {
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--color-brand);
+        background-color: rgba(255, 42, 42, 0.08);
+        border: 1px solid rgba(255, 42, 42, 0.25);
+        padding: 0.2rem 0.55rem;
+        border-radius: 3px;
+    }
+
+    /* ====== CTA DE CIERRE ====== */
+    .actividades-cta {
+        margin-top: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: 10px;
+        padding: 1.75rem 2rem;
+        background-color: var(--color-surface);
+    }
+
+    .actividades-cta p {
+        color: var(--color-text-secondary);
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: var(--color-brand);
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+        border: 2px solid var(--color-brand);
+        padding: 0.7rem 1.4rem;
+        border-radius: 4px;
+        transition:
+            background-color 0.2s,
+            color 0.2s,
+            transform 0.2s,
+            box-shadow 0.2s;
+    }
+
+    .cta-arrow {
+        transition: transform 0.25s ease;
+    }
+
+    .cta-button:hover {
+        background-color: var(--color-brand);
+        color: var(--color-text);
+        transform: translateY(-2px);
+    }
+
+    .cta-button:hover :global(.cta-arrow) {
+        transform: translateX(4px);
+    }
+
+    @media (max-width: 960px) {
+        .semana-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 640px) {
+        h2 {
+            font-size: 2.2rem;
+        }
+
+        .semana-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .multideporte-strip {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding: 1.5rem;
+        }
+    }
+</style>

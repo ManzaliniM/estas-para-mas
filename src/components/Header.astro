@@ -1,0 +1,401 @@
+---
+// src/components/Header.astro
+
+// Número de WhatsApp del grupo (Mariano)
+const WA_NUMBER = "5492494377348";
+const WA_MSG = "Hola%20Mariano%2C%20vi%20la%20p%C3%A1gina%20web%20de%20Est%C3%A1s%20Para%20M%C3%A1s%20y%20quiero%20empezar%20a%20entrenar.%20%C2%BFC%C3%B3mo%20hago%3F";
+---
+
+<header class="site-header" id="site-header">
+    <div class="header-container">
+        <a href="/" class="logo-link" aria-label="Estás Para Más — Inicio">
+            <span class="logo-text"
+                >ESTÁS PARA MÁS<span class="logo-bang">!!!</span></span>
+        </a>
+
+        <nav
+            class="main-nav"
+            id="main-nav-panel"
+            aria-label="Navegación principal"
+        >
+            <ul>
+                <li><a href="#actividades">Actividades</a></li>
+                <li><a href="#objetivos">Objetivos</a></li>
+                <li><a href="#sobre-mariano">Sobre Mariano</a></li>
+                <li><a href="#preguntas-frecuentes">Dudas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <!-- CTA duplicado en el panel para mobile -->
+                <li class="nav-item-cta-mobile">
+                    <a
+                        href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
+                        class="btn-nav-contacto-mobile"
+                        target="_blank"
+                        rel="noopener noreferrer">¡Sumate!</a
+                    >
+                </li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <a
+                href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
+                class="btn-nav-contacto"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                ¡Sumate!
+            </a>
+
+            <!-- Botón hamburguesa (solo mobile) -->
+            <button
+                class="nav-toggle"
+                id="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="main-nav-panel"
+                aria-label="Abrir menú"
+            >
+                <span class="hamburger-line top"></span>
+                <span class="hamburger-line middle"></span>
+                <span class="hamburger-line bottom"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- JAVASCRIPT DEL MENÚ (nativo) -->
+<script>
+    const headerEl = document.getElementById("site-header");
+    const toggleBtn = document.getElementById("nav-toggle");
+    const navPanel = document.getElementById("main-nav-panel");
+
+    const closeMenu = () => {
+        headerEl?.classList.remove("menu-open");
+        toggleBtn?.setAttribute("aria-expanded", "false");
+        toggleBtn?.setAttribute("aria-label", "Abrir menú");
+    };
+
+    toggleBtn?.addEventListener("click", () => {
+        const isOpen = headerEl?.classList.toggle("menu-open");
+        toggleBtn.setAttribute("aria-expanded", String(!!isOpen));
+        toggleBtn.setAttribute(
+            "aria-label",
+            isOpen ? "Cerrar menú" : "Abrir menú",
+        );
+    });
+
+    // Cerrar al tocar un link del panel
+    navPanel?.addEventListener("click", (event) => {
+        const target = event.target;
+        if (target instanceof Element && target.closest("a")) closeMenu();
+    });
+
+    // Cerrar con tecla Escape
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMenu();
+    });
+</script>
+
+<style>
+    .site-header {
+        background-color: var(--color-background-overlay);
+        backdrop-filter: blur(10px); /* Efecto esmerilado moderno */
+        border-bottom: 1px solid var(--color-border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 1rem 2rem;
+        transition:
+            padding 0.3s ease,
+            background-color 0.3s ease,
+            border-color 0.3s ease;
+    }
+
+    /* Estado "compacto" al scrollear (se activa desde BaseLayout) */
+    .site-header.scrolled {
+        padding: 0.55rem 2rem;
+        background-color: rgba(5, 5, 5, 0.92);
+        border-bottom-color: var(--color-border-hover);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    /* Logo tipográfico */
+    .logo-link {
+        text-decoration: none;
+        flex: 0 1 auto;
+        min-width: 0;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 6px;
+    }
+
+    .logo-text {
+        font-weight: 900;
+        font-size: 1.15rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: var(--color-text);
+        white-space: nowrap;
+        display: inline-block;
+        transform: skewX(-6deg);
+        transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    .logo-bang {
+        color: var(--color-brand);
+        transition: letter-spacing 0.25s ease;
+    }
+
+    .logo-link:hover .logo-bang {
+        letter-spacing: 3px;
+    }
+
+    /* Barra de velocidad: como el underline del nav, pero gruesa y en diagonal */
+    .logo-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(
+            90deg,
+            var(--color-brand) 0%,
+            #ff5a2a 100%
+        );
+        transform: skewX(-30deg) scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    .logo-link:hover::after,
+    .logo-link:focus-visible::after {
+        transform: skewX(-30deg) scaleX(1);
+    }
+
+    .logo-link:hover .logo-text {
+        transform: skewX(-6deg) translateX(3px);
+    }
+
+    .main-nav ul {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+    }
+
+    .main-nav a {
+        position: relative;
+        color: var(--color-text-muted);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+    }
+
+    /* Subrayado rojo animado en hover */
+    .main-nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-brand);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a:focus-visible {
+        color: var(--color-brand);
+    }
+
+    .main-nav a:hover::after,
+    .main-nav a:focus-visible::after {
+        transform: scaleX(1);
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 0 0 auto;
+    }
+
+    .btn-nav-contacto {
+        background-color: var(--color-brand);
+        color: var(--color-text);
+        text-decoration: none;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        padding: 0.7rem 1.5rem;
+        border-radius: 4px;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        transition:
+            background-color 0.2s,
+            transform 0.2s,
+            box-shadow 0.2s;
+    }
+
+    .btn-nav-contacto:hover {
+        background-color: var(--color-brand-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px var(--color-brand-shadow);
+    }
+
+    /* ====== HAMBURGUESA (oculta en desktop) ====== */
+    .nav-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border: 1px solid var(--color-border-hover);
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 9px 8px;
+    }
+
+    .hamburger-line {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: var(--color-text);
+        border-radius: 2px;
+        transition:
+            transform 0.3s ease,
+            opacity 0.25s ease,
+            background-color 0.2s ease;
+    }
+
+    .nav-toggle:hover .hamburger-line {
+        background-color: var(--color-brand);
+    }
+
+    /* Animación a forma de X */
+    .site-header.menu-open .hamburger-line.top {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .site-header.menu-open .hamburger-line.middle {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .site-header.menu-open .hamburger-line.bottom {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Enlaces duplicados del panel mobile (ocultos en desktop) */
+    .nav-item-cta-mobile {
+        display: none;
+    }
+
+    .btn-nav-contacto-mobile {
+        display: inline-flex;
+        text-decoration: none;
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 900px) {
+        .main-nav a::after {
+            display: none;
+        }
+
+        .main-nav {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 0;
+            overflow: hidden;
+            background-color: rgba(5, 5, 5, 0.97);
+            border-bottom: 1px solid transparent;
+            transition:
+                max-height 0.35s cubic-bezier(0.2, 0.8, 0.3, 1),
+                border-color 0.35s ease;
+        }
+
+        /* El border del header compacto se conserva: el panel apoya justo debajo */
+        .site-header.menu-open .main-nav {
+            max-height: 420px;
+            border-bottom-color: var(--color-border-hover);
+        }
+
+        .main-nav ul {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+            padding: 0.5rem 1.5rem 1.25rem;
+        }
+
+        .main-nav li {
+            width: 100%;
+            border-bottom: 1px solid var(--color-divider);
+        }
+
+        .main-nav li:last-child {
+            border-bottom: none;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 0.9rem 0;
+            font-size: 1rem;
+        }
+
+        .nav-item-cta-mobile {
+            display: block;
+            margin-top: 0.75rem;
+        }
+
+        .btn-nav-contacto-mobile {
+            display: inline-flex;
+            padding: 0.35rem 0;
+            color: var(--color-brand);
+            font-weight: 800;
+        }
+
+        .nav-toggle {
+            display: flex;
+        }
+
+        /* Ocultar CTA principal cuando hay pocos niveles de zoom */
+        .btn-nav-contacto {
+            font-size: 0.78rem;
+            padding: 0.6rem 1rem;
+        }
+    }
+
+    @media (max-width: 560px) {
+        .btn-nav-contacto {
+            display: none; /* en mobile manda el CTA del panel + hero */
+        }
+
+        .site-header,
+        .site-header.scrolled {
+            padding: 0.75rem 1.25rem;
+        }
+
+        .logo-text {
+            font-size: 0.95rem;
+        }
+    }
+</style>

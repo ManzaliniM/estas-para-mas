@@ -1,0 +1,199 @@
+---
+// src/components/Manifiesto.astro
+// ¿Qué significa "Estás Para Más"? Los valores del grupo, en propia sección
+// luego del Hero. Basado en el worddump (a validar con Mariano).
+// Además incluye la banda de celebración: meta cumplida → asado del grupo.
+
+import Icon from "./Icon.astro";
+
+const valores = [
+    {
+        icon: "users",
+        titulo: "Inclusión y accesibilidad",
+        texto: "No importa el nivel de entrenamiento ni la edad: cualquiera puede compartir el movimiento. Todos tienen algo que aportar, y el disfrute de superar sus límites. Desde el caminante recreativo hasta el triatleta.",
+    },
+    {
+        icon: "clock",
+        titulo: "Salud a través de la constancia",
+        texto: "El deporte como hábito de bienestar diario, con metas realistas y progresivas que cuidan el cuerpo, sin lesiones ni sobreentrenamiento. Rutinas adaptadas a los diversos factores de tus condiciones físicas.",
+    },
+    {
+        icon: "mountain",
+        titulo: "Comunidad e incentivación",
+        texto: "Entrenar en equipo como herramienta de contención mutua para superar las barreras mentales y disfrutar del movimiento. La propia comunidad te incentiva.",
+    },
+    {
+        icon: "grad",
+        titulo: "Educación y entendimiento",
+        texto: 'Aprendizaje continuo para tener un entendimiento sobre el ejercicio y los efectos en tu cuerpo. Ciencia aplicada de la educación física que responde el "¿Para que me sirve?\" de cada ejercicio.',
+    },
+];
+---
+
+<section id="manifiesto" class="manifiesto-section">
+    <div class="manifiesto-container">
+        <div class="manifiesto-header" data-reveal>
+            <span class="section-tag">LA FILOSOFÍA</span>
+            <h2>
+                ¿QUÉ <span class="highlight">SIGNIFICA</span> “ESTÁS PARA MÁS”?
+            </h2>
+            <p>
+                Es la convicción de que podés ir más lejos de lo que creés.  
+                <br />Es pertenecer a un grupo que te acompaña en cada paso, con
+                entrenamientos progresivos y metas realistas. Y que cuando dudes, siempre va a incentivarte.
+            </p>
+        </div>
+
+        <div class="valores-grid">
+            {
+                valores.map((v, i) => (
+                    <article
+                        class="valor-card"
+                        data-reveal
+                        style={`--reveal-delay:${(i + 1) * 0.1}s`}
+                    >
+                        <span class="valor-icon">
+                            <Icon name={v.icon} size="1.5rem" />
+                        </span>
+                        <h3>{v.titulo}</h3>
+                        <p>{v.texto}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .manifiesto-section {
+        background-color: var(--color-background);
+        padding: 6rem 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Glow de marca ambiental */
+    .manifiesto-section::before {
+        content: "";
+        position: absolute;
+        top: -30%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+            circle,
+            rgba(255, 42, 42, 0.07) 0%,
+            transparent 60%
+        );
+        pointer-events: none;
+    }
+
+    .manifiesto-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    .manifiesto-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+    }
+
+
+    h2 {
+        font-size: clamp(1.9rem, 4vw, 2.6rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        margin: 0.5rem 0 1.25rem;
+        line-height: 1.2;
+    }
+
+
+    .manifiesto-header p {
+        max-width: 640px;
+        margin: 0 auto;
+        color: var(--color-text-muted);
+        line-height: 1.7;
+        font-size: 1.05rem;
+    }
+
+    /* ====== GRILLA DE VALORES ====== */
+    .valores-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+        margin-bottom: 3rem;
+    }
+
+    .valor-card {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border-strong);
+        border-radius: 12px;
+        padding: 2rem;
+        transition:
+            transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1),
+            border-color 0.3s ease,
+            background-color 0.3s ease,
+            opacity 0.7s cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    .valor-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--color-brand);
+        background-color: var(--color-surface-raised);
+    }
+
+    .valor-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 8px;
+        color: var(--color-brand);
+        background-color: var(--color-surface-raised);
+        border: 1px solid var(--color-border-strong);
+        transform: skewX(-6deg);
+        margin-bottom: 1.25rem;
+        transition:
+            background-color 0.3s ease,
+            color 0.3s ease,
+            border-color 0.3s ease;
+    }
+
+    .valor-card:hover .valor-icon {
+        background-color: var(--color-brand);
+        color: var(--color-text);
+        border-color: var(--color-brand);
+    }
+
+    .valor-card h3 {
+        font-size: 1.15rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin: 0 0 0.6rem;
+    }
+
+    .valor-card p {
+        color: var(--color-text-muted);
+        line-height: 1.65;
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+        .manifiesto-section {
+            padding: 4.5rem 1.25rem;
+        }
+
+        .valores-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .valor-card {
+            padding: 1.5rem;
+        }
+    }
+</style>

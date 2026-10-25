@@ -1,0 +1,422 @@
+---
+// src/components/CardActividad.astro
+// Tarjeta de actividad con imagen (placeholder hasta tener las fotos reales),
+// ícono SVG, lista de horarios y link al punto de encuentro.
+
+import Icon from "./Icon.astro";
+
+interface Horario {
+    dias: string;
+    hora: string;
+    /** Etiqueta opcional: "UP", "Plaza EPM", "Sala", "Con Tutto", etc. */
+    lugar?: string;
+    /** Link de Google Maps del lugar, si se pasa la etiqueta es un link. */
+    lugarUrl?: string;
+}
+
+interface Props {
+    title: string;
+    icon: string;
+    description: string;
+    schedules: Horario[];
+    mapUrl: string;
+    /** Aclaración al pie de los horarios (ej: otros turnos disponibles). */
+    note?: string;
+    /** Ruta de imagen en /public. Si no se pasa, se muestra el placeholder TBD. */
+    image?: string;
+    /** Delay (segundos) de la animación de entrada, para efecto cascada. */
+    revealDelay?: number;
+}
+
+const {
+    title,
+    icon,
+    description,
+    schedules,
+    mapUrl,
+    note,
+    image,
+    revealDelay = 0,
+} = Astro.props;
+---
+
+<article
+    class="activity-card"
+    data-reveal
+    style={revealDelay ? `--reveal-delay:${revealDelay}s` : undefined}
+>
+    <!-- Imagen destacada (placeholder TBD con estética de rayas deportivas) -->
+    <div class="card-media">
+        {
+            image ? (
+                <img src={image} alt={`Entrenamiento de ${title} — Estás Para Más`} loading="lazy" />
+            ) : (
+                <div class="media-placeholder">
+                    <Icon name={icon} class="placeholder-icon" size="3.25rem" strokeWidth={1.4} />
+                    <span class="placeholder-tag">FOTO PRÓXIMAMENTE</span>
+                </div>
+            )
+        }
+    </div>
+
+    <div class="card-body">
+        <div class="card-head">
+            <span class="activity-icon"><Icon name={icon} /></span>
+            <div class="head-text">
+                <h3>{title}</h3>
+                <p class="card-sub">{description}</p>
+            </div>
+        </div>
+
+        <div class="card-schedules">
+            <p class="schedule-label">
+                <Icon name="clock" size="0.85rem" strokeWidth={2} />
+                HORARIOS
+            </p>
+            <ul class="schedule-list">
+                {
+                    schedules.map((s) => (
+                        <li class="schedule-row">
+                            <span class="schedule-dias">
+                                {s.dias}
+                                {s.lugar && s.lugarUrl && (
+                                    <a
+                                        class="schedule-lugar"
+                                        href={s.lugarUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {s.lugar}
+                                    </a>
+                                )}
+                                {s.lugar && !s.lugarUrl && (
+                                    <span class="schedule-lugar">
+                                        {s.lugar}
+                                    </span>
+                                )}
+                            </span>
+                            <span class="schedule-hora">{s.hora}</span>
+                        </li>
+                    ))
+                }
+            </ul>
+            {
+                note && <p class="schedule-note">{note}</p>
+            }
+        </div>
+
+        <a
+            href={mapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="map-link"
+        >
+            <Icon name="pin" class="link-icon" size="1rem" strokeWidth={2} />
+            Ver punto de encuentro
+            <Icon name="arrow" class="link-arrow" size="1rem" strokeWidth={2} />
+        </a>
+    </div>
+</article>
+
+<style>
+    .activity-card {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border-strong);
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+            transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1),
+            border-color 0.3s ease,
+            box-shadow 0.3s ease,
+            opacity 0.7s cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    .activity-card:hover,
+    .activity-card:focus-within {
+        transform: translateY(-8px);
+        border-color: var(--color-brand);
+        box-shadow:
+            0 18px 40px rgba(0, 0, 0, 0.55),
+            0 0 0 1px var(--color-brand),
+            0 12px 32px -8px var(--color-brand-shadow);
+    }
+
+    /* ====== IMAGEN / MEDIA ====== */
+    .card-media {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+        background-color: var(--color-surface-raised);
+    }
+
+    .card-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(35%) contrast(1.05);
+        transition:
+            transform 0.5s cubic-bezier(0.2, 0.8, 0.3, 1),
+            filter 0.5s ease;
+    }
+
+    .activity-card:hover .card-media img {
+        transform: scale(1.08);
+        filter: grayscale(0%) contrast(1.08);
+    }
+
+    /* Placeholder de estilo deportivo: rayas diagonales + ícono PWP */
+    .media-placeholder {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        background:
+            repeating-linear-gradient(
+                -45deg,
+                transparent 0 14px,
+                rgba(255, 255, 255, 0.025) 14px 28px
+            ),
+            var(--color-surface-raised);
+    }
+
+    /* Ícono del placeholder (aplicado vía prop class) */
+    .media-placeholder :global(.placeholder-icon) {
+        color: var(--color-text-subtle);
+        transition:
+            color 0.4s ease,
+            transform 0.5s cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    .activity-card:hover :global(.placeholder-icon) {
+        color: var(--color-brand);
+        transform: scale(1.12) skewX(-4deg);
+    }
+
+    .placeholder-tag {
+        position: absolute;
+        bottom: 0.75rem;
+        font-size: 0.62rem;
+        letter-spacing: 2.5px;
+        color: var(--color-text-subtle);
+        background-color: rgba(11, 11, 11, 0.7);
+        border: 1px solid var(--color-border-strong);
+        padding: 0.25rem 0.6rem;
+        border-radius: 3px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    /* Línea roja que se enciende en hover (estética agresiva) */
+    .card-media::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 100%;
+        background: linear-gradient(90deg, var(--color-brand) 0%, #ff5a2a 100%);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s ease;
+    }
+
+    .activity-card:hover .card-media::after,
+    .activity-card:focus-within .card-media::after {
+        transform: scaleX(1);
+    }
+
+    /* ====== CUERPO ====== */
+    .card-body {
+        padding: 1.5rem 1.5rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    .card-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.9rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .activity-icon {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 6px;
+        color: var(--color-text);
+        background-color: var(--color-surface-raised);
+        border: 1px solid var(--color-border-strong);
+        transform: skewX(-6deg);
+        transition:
+            color 0.25s,
+            border-color 0.25s,
+            background-color 0.25s;
+    }
+
+    .activity-icon :global(svg) {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .activity-card:hover .activity-icon {
+        color: var(--color-background);
+        background-color: var(--color-brand);
+        border-color: var(--color-brand);
+    }
+
+    .head-text h3 {
+        font-size: 1.25rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.3px;
+        margin: 0;
+        line-height: 1.15;
+    }
+
+    .card-sub {
+        color: var(--color-text-muted);
+        font-size: 0.85rem;
+        line-height: 1.45;
+        margin: 0.3rem 0 0;
+    }
+
+    /* ====== HORARIOS ====== */
+    .card-schedules {
+        margin-bottom: 1.4rem;
+        border: 1px dashed var(--color-border-strong);
+        border-radius: 6px;
+        padding: 0.9rem 1rem;
+        background-color: var(--color-background-deep);
+        transition: border-color 0.25s ease;
+    }
+
+    .activity-card:hover .card-schedules {
+        border-color: var(--color-border-hover);
+    }
+
+    .schedule-label {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--color-brand);
+        font-weight: 800;
+        margin-bottom: 0.55rem;
+    }
+
+    .schedule-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .schedule-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        padding: 0.3rem 0;
+        border-bottom: 1px solid var(--color-divider);
+        font-size: 0.88rem;
+    }
+
+    .schedule-row:last-child {
+        border-bottom: none;
+    }
+
+    .schedule-dias {
+        color: var(--color-text-secondary);
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    .schedule-hora {
+        color: var(--color-text);
+        font-weight: 800;
+        text-align: right;
+    }
+
+    /* Etiqueta de lugar (UP, Plaza EPM, Sala, etc.) — link a Maps cuando hay lugarUrl */
+    .schedule-lugar {
+        font-size: 0.64rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--color-brand);
+        background-color: rgba(255, 42, 42, 0.08);
+        border: 1px solid rgba(255, 42, 42, 0.25);
+        padding: 0.15rem 0.45rem;
+        border-radius: 3px;
+        align-self: flex-start;
+        text-decoration: none;
+        transition:
+            color 0.2s ease,
+            background-color 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    a.schedule-lugar:hover {
+        background-color: var(--color-brand);
+        color: var(--color-text);
+        border-color: var(--color-brand);
+    }
+
+    /* Aclaración al pie de los horarios */
+    .schedule-note {
+        margin: 0.7rem 0 0;
+        padding-top: 0.6rem;
+        border-top: 1px dashed var(--color-border-strong);
+        color: var(--color-text-muted);
+        font-size: 0.76rem;
+        line-height: 1.5;
+    }
+
+    /* ====== LINK MAPA ====== */
+    .map-link {
+        margin-top: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        color: var(--color-text-muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
+    }
+
+    .map-link :global(.link-icon) {
+        color: var(--color-brand);
+    }
+
+    .map-link :global(.link-arrow) {
+        margin-left: auto;
+        transition: transform 0.25s ease;
+    }
+
+    .map-link:hover {
+        color: var(--color-text);
+    }
+
+    .map-link:hover :global(.link-arrow) {
+        transform: translateX(4px);
+    }
+</style>

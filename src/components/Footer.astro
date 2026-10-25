@@ -1,0 +1,254 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+
+// Número de WhatsApp del grupo (Mariano)
+const WA_NUMBER = "5492494377348";
+const WA_MSG = "Hola%20Mariano%2C%20vi%20la%20p%C3%A1gina%20web%20de%20Est%C3%A1s%20Para%20M%C3%A1s%20y%20quiero%20empezar%20a%20entrenar.%20%C2%BFC%C3%B3mo%20hago%3F";
+---
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <p class="footer-logo-text">ESTÁS PARA MÁS!!!</p>
+        </div>
+
+        <div class="footer-info">
+            <h4>Ubicación</h4>
+            <a
+                href="https://maps.google.com/?q=Misiones+868,+Tandil"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="direccion maps-link"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    class="pin-icon"
+                >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                    ></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                Misiones 868
+            </a>
+            <p>Tandil, Buenos Aires, Argentina</p>
+        </div>
+
+        <div class="footer-social">
+            <h4>Contacto</h4>
+            <a
+                href="https://instagram.com/estasparamas"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    aria-hidden="true"
+                >
+                    <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <circle
+                        cx="17.2"
+                        cy="6.8"
+                        r="1.2"
+                        fill="currentColor"
+                        stroke="none"></circle>
+                </svg>
+                @estasparamas
+            </a>
+            <a
+                href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.4-5a8.4 8.4 0 1 1 16.1-3.8Z"
+                    ></path>
+                    <path
+                        d="M8.8 8.5c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.4.5 0 .3-.1.7-.4 1-.4.4-.9.6-1.5.6-1 0-2.3-.5-3.6-1.6-1.2-1-2.1-2.3-2.4-3.3-.2-.7-.1-1.3.2-1.8Z"
+                    ></path>
+                </svg>
+                WhatsApp de Mariano
+            </a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; {currentYear} Estás Para Más.</p>
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        background-color: var(--color-background-deep);
+        border-top: 1px solid var(--color-border);
+        padding: 4rem 2rem 2rem 2rem;
+        color: var(--color-text);
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.2fr 0.9fr 0.9fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .footer-logo-text {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 0.75rem;
+        padding-bottom: 6px;
+        font-weight: 900;
+        font-size: 1.35rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: var(--color-brand);
+        transform: skewX(-6deg);
+        transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    /* Barra de velocidad: misma actitud que el logo del header */
+    .footer-logo-text::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(
+            90deg,
+            var(--color-brand) 0%,
+            #ff5a2a 100%
+        );
+        transform: skewX(-30deg) scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    .footer-logo-text:hover::after {
+        transform: skewX(-30deg) scaleX(1);
+    }
+
+    .footer-logo-text:hover {
+        transform: skewX(-6deg) translateX(3px);
+    }
+
+
+    .direccion {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--color-text-muted);
+        line-height: 1.6;
+        font-size: 0.95rem;
+        text-decoration: none;
+        width: fit-content;
+        transition: color 0.2s ease;
+    }
+
+    /* Hover: se suma el enlace a Google Maps */
+    .maps-link:hover,
+    .maps-link:hover .pin-icon {
+        color: var(--color-brand);
+    }
+
+    .maps-link:focus-visible {
+        outline: 2px solid var(--color-brand);
+        outline-offset: 4px;
+    }
+
+    .pin-icon {
+        width: 0.95rem;
+        height: 0.95rem;
+        color: var(--color-brand);
+        flex: 0 0 auto;
+    }
+
+    h4 {
+        color: var(--color-text);
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1.2rem;
+        font-weight: 800;
+    }
+
+    .footer-info p {
+        color: var(--color-text-muted);
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    .footer-social {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .social-link {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        color: var(--color-text-muted);
+        text-decoration: none;
+        margin-bottom: 0.8rem;
+        font-size: 0.95rem;
+        transition:
+            color 0.2s ease,
+            transform 0.2s ease;
+        font-weight: 600;
+    }
+
+    .social-link:hover {
+        color: var(--color-brand);
+        transform: translateX(4px);
+    }
+
+    .social-link svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        flex: 0 0 auto;
+    }
+
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        border-top: 1px solid var(--color-divider);
+        padding-top: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-bottom p {
+        color: var(--color-text-subtle);
+        font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+        .footer-container {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+    }
+</style>

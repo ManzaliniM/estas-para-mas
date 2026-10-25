@@ -1,0 +1,52 @@
+---
+// src/pages/index.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Manifiesto from "../components/Manifiesto.astro";
+import Actividades from "../components/Actividades.astro";
+import SobreMariano from "../components/SobreMariano.astro";
+import AccordionFAQ from "../components/AccordionFAQ.astro";
+import Contacto from "../components/Contacto.astro";
+import MarqueeSponsors from "../components/MarqueeSponsors.astro";
+import ProximosObjetivos from "../components/ProximosObjetivos.astro";
+import ResultadosComunidad from "../components/ResultadosComunidad.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="ESTÁS PARA MÁS!!!" description="Entrenamiento funcional y triatlón en Tandil. Grupo de entrenamiento con Mariano, entrenador profesional y triatleta.">
+	<!-- Encabezado de Navegación Global -->
+	<Header />
+
+	<main>
+		<!-- 1. Banner Principal de Impacto -->
+		<Hero />
+
+		<!-- 2. ¿Qué significa "Estás Para Más"? Valores del grupo -->
+		<Manifiesto />
+
+		<!-- 3. Grilla con las Actividades, Horarios, Lugares y Agenda semanal -->
+		<Actividades />
+
+		<!-- 4. Metas del grupo en el calendario -->
+		<ProximosObjetivos />
+
+		<!-- 5. Trayectoria y Credenciales del Profesor Mariano -->
+		<SobreMariano />
+
+		<!-- 6. Resultados reales + comunidad del IG -->
+		<ResultadosComunidad />
+
+		<!-- 7. Bloque Interactivo de Preguntas Frecuentes -->
+		<AccordionFAQ />
+
+		<!-- 8. Canales de contacto directo con Mariano -->
+		<Contacto />
+	</main>
+
+	<!-- Marquee de Sponsors -->
+	<MarqueeSponsors />
+
+	<!-- Pie de Página Global -->
+	<Footer />
+</BaseLayout>

@@ -1,0 +1,289 @@
+---
+// src/components/AccordionFAQ.astro
+---
+
+<section id="preguntas-frecuentes" class="faq-section">
+    <div class="faq-container">
+        <div class="faq-header" data-reveal>
+            <h2>¿TENÉS ALGUNA <span class="highlight">DUDA</span>?</h2>
+            <p>
+                Despejá las preguntas más comunes antes de arrancar a entrenar
+                con nosotros.
+            </p>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    <span>¿Necesito tener experiencia previa?</span>
+                    <span class="icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg></span
+                    >
+                </button>
+                <div class="accordion-panel">
+                    <p>
+                        No se necesita de ningún tipo de experiencia previa. El
+                        grupo abarca desde caminatas recreativas y
+                        reacondicionamiento en el gimnasio hasta el alto
+                        rendimiento. Cada planificación se adapta de forma
+                        estrictamente individual a tu realidad actual.
+                    </p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    <span>¿Puedo ir solamente al gimnasio?</span>
+                    <span class="icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg></span
+                    >
+                </button>
+                <div class="accordion-panel">
+                    <p>
+                        Sí, podés optar por entrenar fuerza sin obligación de
+                        formar parte de las salidas de running o triatlón.
+                    </p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    <span
+                        >¿Cómo me entero de los entrenamientos de cada semana?</span
+                    >
+                    <span class="icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg></span
+                    >
+                </button>
+                <div class="accordion-panel">
+                    <p>
+                        Cada semana Mariano envía el plan por un canal de
+                        difusión de WhatsApp, al que se accede una vez que ya
+                        sos parte del grupo. Es una rutina grupal: la sesión es
+                        la misma para todos, y cada uno la trabaja con su propio
+                        porcentaje de intensidad.
+                    </p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    <span>¿Cuánto cuesta?</span>
+                    <span class="icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg></span
+                    >
+                </button>
+                <div class="accordion-panel">
+                    <p>
+                        Si el precio es "charlarlo con Mariano" está bien como
+                        estrategia pero entonces conviene una FAQ que diga
+                        explícito cuándo coordinamos el valor de la cuota
+                    </p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    <span>¿Dónde entrenamos?</span>
+                    <span class="icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg></span
+                    >
+                </button>
+                <div class="accordion-panel">
+                    <p>
+                        aclarar que la base es Misiones 868 y que cada actividad
+                        tiene su punto.
+                    </p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    <span>¿Cómo arranco?</span>
+                    <span class="icon"
+                        ><svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg></span
+                    >
+                </button>
+                <div class="accordion-panel">
+                    <p>
+                        Que pasa después de escribirles por WhatsApp? ¿clase de
+                        prueba? ¿entrevista? Tres pasos Escribinos →
+                        charla/primer día → armamos tu plan
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- JAVASCRIPT DE CLIENTE NATIVO -->
+<script>
+    const triggers = document.querySelectorAll(".accordion-trigger");
+
+    triggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+            const item = trigger.parentElement;
+            // El ?. asegura que si 'item' es null, no tire error catastrófico
+            item?.classList.toggle("active");
+
+            // Solo un panel abierto a la vez (efecto acordeón real)
+            const items = document.querySelectorAll(".accordion-item");
+            items.forEach((other) => {
+                if (other !== item && other.classList.contains("active")) {
+                    other.classList.remove("active");
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    .faq-section {
+        background-color: var(--color-background);
+        padding: 6rem 2rem;
+        border-top: 1px solid var(--color-border);
+    }
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .faq-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+    }
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 900;
+    }
+    .faq-header p {
+        color: var(--color-text-muted);
+        margin-top: 0.5rem;
+    }
+    .accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .accordion-item {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border-strong);
+        border-radius: 6px;
+        overflow: hidden;
+        transition: border-color 0.2s;
+    }
+    .accordion-item:hover {
+        border-color: var(--color-border-hover);
+        background-color: var(--color-surface-raised);
+    }
+    .accordion-item.active {
+        border-color: var(--color-brand);
+    }
+    .accordion-trigger {
+        width: 100%;
+        background: none;
+        border: none;
+        color: var(--color-text-secondary);
+        padding: 1.5rem;
+        font-size: 1.1rem;
+        font-weight: 550;
+        transform: skew(-4deg);
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .accordion-trigger .icon {
+        color: var(--color-brand);
+        transition: transform 0.3s ease;
+    }
+
+    .accordion-trigger .icon svg {
+        width: 1.3rem;
+        height: 1.3rem;
+        display: block;
+    }
+
+    .accordion-item.active .icon {
+        transform: rotate(180deg);
+    }
+    .accordion-panel {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+            max-height 0.3s ease-out,
+            padding 0.3s ease-out;
+        padding: 0 1.5rem;
+    }
+    /* Cuando el item está activo, mostramos el panel */
+    .accordion-item.active .accordion-panel {
+        max-height: 200px; /* Un valor alto estimado para permitir la animación */
+        padding-bottom: 1.5rem;
+    }
+    .accordion-panel p {
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        margin: 0;
+    }
+</style>

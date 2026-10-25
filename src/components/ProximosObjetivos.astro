@@ -1,0 +1,310 @@
+---
+// src/components/ProximosObjetivos.astro
+// Sección de metas del grupo: carreras, triatlones y desafíos en preparación.
+// Las fechas son TBD hasta hablar con Mariano: aparecerá el estado "A CONFIRMAR".
+
+import Icon from "./Icon.astro";
+---
+
+<section id="objetivos" class="objetivos-section">
+    <div class="objetivos-container">
+        <div class="section-header" data-reveal>
+            <span class="section-tag">EN MARCHA</span>
+            <h2>PRÓXIMOS <span class="highlight">OBJETIVOS</span></h2>
+            <p>
+                Cada meta del grupo se planifica, se entrena y se celebra.
+                <br />Estas son las que estamos preparando ahora mismo.
+            </p>
+        </div>
+
+        <div class="objetivos-grid">
+            <a
+                href="https://www.ironman.com/races/im-san-juan"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="objetivo-card"
+                data-reveal
+                style="--reveal-delay:0.1s"
+            >
+                <div class="objetivo-icon">
+                    <Icon name="flag" size="1.6rem" />
+                </div>
+                <div class="objetivo-info">
+                    <span class="objetivo-actividad">TRIATLÓN FULL</span>
+                    <h3>IRONMAN San Juan</h3>
+
+                    <p class="objetivo-fecha">
+                        <Icon name="clock" size="0.85rem" />
+                        <strong>Dom 01/11</strong>
+                        <span
+                            class="objetivo-cd"
+                            data-race="2026-11-01T00:00:00-03:00">…</span
+                        >
+                    </p>
+                    <p class="objetivo-meta">
+                        <Icon name="pin" size="0.8rem" /> San Juan, Argentina
+                    </p>
+                    <p class="app-note">
+                        Podés seguir la carrera en vivo con la app
+                        <strong> Ironman Tracker</strong>.
+                    </p>
+                </div>
+
+                <span class="objetivo-arrow">
+                    <Icon name="arrow" size="1.2rem" />
+                </span>
+            </a>
+
+            <a
+                href="https://atletismotandil.com.ar/tandilia/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="objetivo-card"
+                data-reveal
+                style="--reveal-delay:0.2s"
+            >
+                <div class="objetivo-icon">
+                    <Icon name="runner" size="1.6rem" />
+                </div>
+                <div class="objetivo-info">
+                    <span class="objetivo-actividad">ATLETISMO</span>
+                    <h3>Tandilia</h3>
+
+                    <p class="objetivo-fecha">
+                        <Icon name="clock" size="0.85rem" />
+                        <strong>Sáb 14/11</strong>
+                        <span
+                            class="objetivo-cd"
+                            data-race="2026-11-14T00:00:00-03:00">…</span
+                        >
+                    </p>
+                    <p class="objetivo-meta">
+                        <Icon name="pin" size="0.8rem" /> Tandil, Argentina
+                    </p>
+                    <p class="app-note">
+                        Info, fechas y distancias en el sitio oficial de la
+                        carrera.
+                    </p>
+                </div>
+
+                <span class="objetivo-arrow">
+                    <Icon name="arrow" size="1.2rem" />
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- JAVASCRIPT DE CLIENTE NATIVO: countdown de las carreras -->
+<script>
+    const cds = document.querySelectorAll(".objetivo-cd");
+    const DIA_MS = 1000 * 60 * 60 * 24;
+
+    const tick = () => {
+        const now = new Date();
+        cds.forEach((el) => {
+            const target = new Date(el.getAttribute("data-race") || "");
+            const diff = target.getTime() - now.getTime();
+
+            if (diff <= 0) {
+                // Ya pasó el día: el meta queda limpio (se actualiza a mano)
+                if (diff < -DIA_MS * 3) el.textContent = "COMPLETADA";
+                else el.textContent = "¡ HOY SE CORRE !";
+            } else {
+                const d = Math.floor(diff / DIA_MS);
+                const h = Math.floor(diff / (1000 * 60 * 60)) % 24;
+                const m = Math.floor(diff / (1000 * 60)) % 60;
+                const s = Math.floor(diff / 1000) % 60;
+                el.textContent = `faltan ${d}d ${h}h ${m}m ${s}s`;
+            }
+        });
+    };
+
+    tick();
+    setInterval(tick, 1000);
+</script>
+
+<style>
+    .objetivos-section {
+        background-color: var(--color-background);
+        padding: 6rem 2rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .objetivos-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+    }
+
+    h2 {
+        font-size: 2.6rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin: 0.5rem 0 1rem;
+    }
+
+    .section-header p {
+        color: var(--color-text-muted);
+        max-width: 540px;
+        margin: 0 auto;
+    }
+
+    /* ====== CARDS DE OBJETIVOS ====== */
+    .objetivos-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .objetivo-card {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border-strong);
+        border-left: 4px solid var(--color-brand);
+        border-radius: 10px;
+        padding: 1.4rem 1.6rem;
+        transition:
+            transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1),
+            border-color 0.25s ease,
+            background-color 0.25s ease,
+            opacity 0.7s cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    .objetivo-card:hover {
+        transform: translateX(6px);
+        background-color: var(--color-surface-raised);
+        border-color: var(--color-border-hover);
+        border-left-color: var(--color-brand);
+    }
+
+    .objetivo-icon {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 8px;
+        color: var(--color-brand);
+        background-color: var(--color-surface-raised);
+        border: 1px solid var(--color-border-strong);
+        transform: skewX(-6deg);
+        transition:
+            background-color 0.25s ease,
+            color 0.25s ease;
+    }
+
+    .objetivo-card:hover .objetivo-icon {
+        background-color: var(--color-brand);
+        color: var(--color-text);
+        border-color: var(--color-brand);
+    }
+
+    .objetivo-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .objetivo-actividad {
+        color: var(--color-brand);
+        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+    }
+
+    .objetivo-info h3 {
+        font-size: 1.2rem;
+        font-weight: 900;
+        margin: 0.25rem 0;
+        line-height: 1.25;
+    }
+
+    .objetivo-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        color: var(--color-text-muted);
+        font-size: 0.85rem;
+        margin: 0;
+    }
+
+    /* Nota secundaria dentro del card (info del sitio oficial, app de tracking) */
+    .objetivo-fecha {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: var(--color-text-secondary);
+        font-size: 0.88rem;
+        margin: 0.55rem 0 0.2rem;
+    }
+
+    .objetivo-fecha strong {
+        color: var(--color-text);
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    .objetivo-cd {
+        color: var(--color-brand);
+        font-weight: 800;
+        font-size: 0.78rem;
+        letter-spacing: 0.4px;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
+
+    .app-note {
+        margin: 0.45rem 0 0;
+        color: var(--color-text-subtle);
+        font-size: 0.78rem;
+        line-height: 1.5;
+    }
+
+    .app-note strong {
+        color: var(--color-brand);
+        font-weight: 800;
+    }
+
+    /* Los cards con link externo heredan el estilo y suman cursor + flecha animada */
+    a.objetivo-card {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .objetivo-arrow {
+        flex: 0 0 auto;
+        color: var(--color-text-subtle);
+        transition:
+            color 0.2s ease,
+            transform 0.25s ease;
+    }
+
+    .objetivo-card:hover .objetivo-arrow {
+        color: var(--color-brand);
+        transform: translateX(4px);
+    }
+
+    @media (max-width: 640px) {
+        .objetivos-section {
+            padding: 4.5rem 1.25rem;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+        }
+
+        .objetivo-card {
+            flex-wrap: wrap;
+            padding: 1.25rem;
+            gap: 1rem;
+        }
+    }
+</style>

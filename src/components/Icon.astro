@@ -1,0 +1,96 @@
+---
+// src/components/Icon.astro
+// Set de íconos SVG deportivos, en línea, estilo "stroke" (consistente con la marca: negro + rojo).
+// Uso: <Icon name="dumbbell" /> — hereda el color por CSS a través de currentColor.
+
+interface Props {
+    name: keyof typeof icons;
+    class?: string;
+    /** Tamaño CSS del ícono (ej: "1.25rem", "3.5rem", "24px"). Default: 1.25rem */
+    size?: string;
+    strokeWidth?: number;
+}
+
+const { name, class: className, size = "1.25rem", strokeWidth = 1.8 } =
+    Astro.props;
+
+const icons = {
+    // Barra olímpica (Gimnasio de Fuerza)
+    dumbbell: '<path d="M6.5 6.5v11"/><path d="M3.5 9.5v5"/><path d="M17.5 6.5v11"/><path d="M20.5 9.5v5"/><path d="M6.5 12h11"/>',
+
+    // Corredor de perfil (Running / Trote)
+    runner: '<circle cx="15.5" cy="4.3" r="2"/><path d="M13.6 8.5 11 12.5"/><path d="M13.7 8.5 17.4 10.2"/><path d="M13.7 9.5 10.3 9.8"/><path d="M11 12.5 13.9 14.3 12.9 18.9"/><path d="M11 12.5 8.8 15.4 4.6 16.3"/>',
+
+    // Bicicleta (Ciclismo)
+    bike: '<circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/>',
+
+    // Nadador + agua (Natación)
+    swimmer: '<circle cx="17.4" cy="5.4" r="1.9"/><path d="M2.5 11.9 8.8 9l5.2 2.2 4.2-4.4"/><path d="M2 17.5c1.6-1.2 3.2-1.2 4.8 0s3.2 1.2 4.8 0 3.2-1.2 4.8 0 3.2 1.2 4.8 0"/>',
+
+    // Bota de trekking (Caminata)
+    boot: '<path d="M6 4h4v8.1l3.6 1.3 4.7 1.9a2.3 2.3 0 0 1 1.4 2.1V19H6.5A1.5 1.5 0 0 1 5 17.5V5Z"/><path d="M7.2 6.8h1.6"/><path d="M7.2 9.3h1.6"/>',
+
+    // Pin de ubicación
+    pin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+
+    // Reloj (horarios)
+    clock: '<circle cx="12" cy="12" r="9.5"/><path d="M12 6.5V12l3.5 2"/>',
+
+    // Birrete (Prof. Universitario)
+    grad: '<path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>',
+
+    // WhatsApp
+    whatsapp: '<path d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.4-5a8.4 8.4 0 1 1 16.1-3.8Z"/><path d="M8.8 8.5c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.4.5 0 .3-.1.7-.4 1-.4.4-.9.6-1.5.6-1 0-2.3-.5-3.6-1.6-1.2-1-2.1-2.3-2.4-3.3-.2-.7-.1-1.3.2-1.8Z"/>',
+
+    // Instagram
+    instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/>',
+
+    // Flecha (CTAs y links)
+    arrow: '<path d="M4 12h15"/><path d="m13 6 6 6-6 6"/>',
+
+    // Chevron hacia abajo (acordeón / scroll hint)
+    chevron: '<path d="m6 9 6 6 6-6"/>',
+
+    // Bandera de meta (logros)
+    flag: '<path d="M4 22V3"/><path d="M4 4h13l-2.5 4L17 12H4"/>',
+
+    // Grupo de personas (comunidad / inclusión)
+    users: '<circle cx="9" cy="7" r="3"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><circle cx="16.5" cy="6.5" r="2.5"/><path d="M16.5 13.5a4.5 4.5 0 0 1 4.5 4.5"/><path d="M12 20v-.5"/>',
+
+    // Montañas (entorno serrano)
+    mountain: '<path d="m3 20 6.5-11L13 15l3.5-5L21 20H3Z"/><path d="M9.5 15.5 12 11"/>',
+
+    // Flecha hacia arriba (superación)
+    "arrow-up": '<path d="M12 19V5"/><path d="m5 12 7-7 7 7"/>',
+
+    // Rotación / combinados (multideporte)
+    loop: '<path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/>',
+
+    // Nota de prensa (historias)
+    news: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/>',
+
+    // Video / entrevistas
+    video: '<path d="m22 8-6 4 6 4V8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/>',
+} as const;
+---
+
+<svg
+    class={className}
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    fill="none"
+    stroke="currentColor"
+    stroke-width={strokeWidth}
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    set:html={icons[name]}
+/>
+
+<style>
+    svg {
+        display: block;
+        flex: 0 0 auto;
+    }
+</style>

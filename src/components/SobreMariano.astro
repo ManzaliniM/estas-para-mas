@@ -1,0 +1,228 @@
+---
+// src/components/SobreMariano.astro
+import Icon from "./Icon.astro";
+---
+
+<section id="sobre-mariano" class="about-section">
+    <div class="about-container">
+        <div class="about-visual" data-reveal>
+            <div class="frame-container">
+                <img
+                    src="/img/mariano.jpg"
+                    alt="Prof. Mariano Manzalini corriendo los 42K de Rosario"
+                />
+                <div class="border-effect"></div>
+            </div>
+
+            <div class="credenciales">
+                <div class="credencial-item">
+                    <span class="credencial-icon">
+                        <Icon name="grad" size="1.4rem" strokeWidth={1.8} />
+                    </span>
+                    <p>
+                        Prof. Universitario <br /><strong
+                            >UNLP (Educación Física)</strong
+                        >
+                    </p>
+                </div>
+                <div class="credencial-item">
+                    <span class="credencial-icon">
+                        <Icon name="bike" size="1.4rem" strokeWidth={1.8} />
+                    </span>
+                    <p>
+                        Entrenador Certificado <br /><strong
+                            >ITU (Triatlón)</strong
+                        >
+                    </p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-principal">Lo importante es compartir.</p>
+            </div>
+        </div>
+
+        <div class="about-content" data-reveal>
+            <span class="section-tag">EL ENTRENADOR</span>
+            <h2>MARIANO <span class="highlight">MANZALINI</span></h2>
+            <p class="lead">
+                Con más de 33 años de trayectoria en Tandil, el objetivo de
+                Mariano no es solo entrenar: es enseñar a cada uno a superar sus
+                propios límites de forma inteligente y segura.
+            </p>
+            <p class="biography">
+                A lo largo de su carrera Mariano planificó y acompañó las metas
+                de cientos de alumnos. Desde quienes buscan recuperar su
+                vitalidad caminando, hasta atletas de élite cruzando las metas
+                de los Ironman y los triatlones más exigentes. Acompañando desde
+                una posición activa, el también se pone el dorsal y corre sus
+                propias competencias. En constante formación, se mantiene
+                participando de cursos y capacitaciones diversas para que cada
+                planificación tenga fundamento. Los resultados que cosechan los
+                demás son para él la mayor recompensa.
+            </p>
+            <p class="biography">
+                Su rol es integral y va mucho más allá de armar una rutina
+                física: es un formador capaz de detectar el talento bruto y
+                sostener psicológicamente a sus atletas en las carreras más
+                extremas, defendiendo una visión metodológica clara frente a las
+                tendencias comerciales del running actual. En las horas
+                extenuantes de un Ironman lo vas a encontrar en el circuito:
+                corriendo y “vigilando desde el fondo”, midiendo las distancias
+                de los chicos, alentándolos y cuidando la estrategia en todo
+                momento. Ese liderazgo afectivo construyó algo más difícil que
+                un triunfo deportivo: un ambiente donde el éxito de uno se
+                siente como el de todos.
+            </p>
+            <p class="biography">
+                Su filosofía pone la salud y la progresión por delante de la
+                intensidad: rechaza el error común de querer ir al límite en
+                cada sesión. Lo más inteligente es “ir fuerte, pero con el pie
+                en el freno”: terminar sanos y sin lesiones es el verdadero
+                triunfo, porque una lesión te hace perder mucho más de lo que se
+                gana por sobreentrenar. Por eso el triatlón — el deporte más
+                completo — es su terreno natural: no se trata de sumar volumen
+                de masa muscular por estética, sino de entrenar la fuerza justa
+                y la resistencia para volver al organismo lo más eficiente
+                posible.
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .about-section {
+        background-color: var(--color-background);
+        padding: 6rem 2rem;
+        border-top: 1px solid var(--color-border);
+    }
+    .about-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 3rem;
+        align-items: start;
+    }
+    /* La columna visual (más corta) flota centrada respecto de la bio */
+    .about-visual {
+        position: relative;
+        align-self: center;
+    }
+    .frame-container {
+        position: relative;
+        transform: skewX(-3deg);
+        border: 3px solid var(--color-brand);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .frame-container img {
+        width: 100%;
+        height: clamp(320px, 36vw, 470px);
+        object-fit: cover;
+        transform: skewX(3deg) scale(1.06);
+        filter: grayscale(20%);
+    }
+    .about-content {
+        color: var(--color-text);
+    }
+    h2 {
+        font-size: 2.8rem;
+        font-weight: 900;
+        margin: 0.5rem 0 1.5rem 0;
+    }
+    .lead {
+        font-size: 1.2rem;
+        color: var(--color-text);
+        font-weight: 600;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+    .biography {
+        color: var(--color-text-muted);
+        line-height: 1.7;
+        font-size: 1.05rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Credenciales (ahora bajo la imagen, en la columna visual) */
+    .credenciales {
+        display: flex;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+        margin: 2rem 0 0;
+        border-top: 1px solid var(--color-border-strong);
+        padding-top: 1.75rem;
+    }
+
+    .credencial-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .credencial-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        color: var(--color-brand);
+        background-color: var(--color-surface-raised);
+        border-radius: 6px;
+        border: 1px solid var(--color-border-strong);
+        transform: skewX(-6deg);
+        transition:
+            border-color 0.25s ease,
+            background-color 0.25s ease,
+            color 0.25s ease;
+    }
+
+    .credencial-item:hover .credencial-icon {
+        border-color: var(--color-brand);
+        background-color: var(--color-brand);
+        color: var(--color-text);
+    }
+
+    .credencial-item p {
+        font-size: 0.85rem;
+        line-height: 1.35;
+        margin: 0;
+        color: var(--color-text-muted);
+    }
+
+    .credencial-item strong {
+        color: var(--color-text);
+    }
+
+    @media (max-width: 500px) {
+        .credenciales {
+            gap: 1.25rem;
+        }
+    }
+    .quote-box {
+        border-left: 4px solid var(--color-brand);
+        padding-left: 1.5rem;
+        background-color: var(--color-surface);
+        padding: 1.5rem;
+        border-radius: 0 8px 8px 0;
+        margin-top: 1.75rem;
+    }
+    .quote-principal {
+        font-weight: 800;
+        font-size: 1.3rem;
+        line-height: 1.35;
+        color: var(--color-text);
+        margin: 0 0 0.6rem;
+    }
+
+    @media (max-width: 968px) {
+        .about-container {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        h2 {
+            font-size: 2.2rem;
+        }
+    }
+</style>

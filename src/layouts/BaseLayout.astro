@@ -1,0 +1,88 @@
+---
+// src/layouts/BaseLayout.astro
+import "../styles/global.css";
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const {
+    title,
+    description = "Gimnasio y grupo de entrenamiento multidisciplinario en Tandil. Preparación integral para caminatas, running, triatlones e Ironman liderado por el Prof. Mariano Manzalini.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
+
+        <!-- SEO Local e Indexación -->
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta
+            name="keywords"
+            content="gimnasio tandil, triatlon tandil, entrenamiento maraton tandil, running tandil, mariano manzalini, estas para mas tandil, ironman argentina"
+        />
+        <meta name="robots" content="index, follow" />
+
+        <!-- Estilos Globales (importados en el frontmatter) -->
+    </head>
+    <body>
+        <!-- Barra de progreso de scroll -->
+        <div class="scroll-progress" id="scroll-progress"></div>
+        <!-- Aquí se inyectará el contenido de cada página -->
+        <slot />
+
+        <!-- JAVASCRIPT GLOBAL: reveal on scroll + barra de progreso + header compacto -->
+        <script>
+            // 1. Reveal on scroll: anima todo elemento [data-reveal] cuando entra en viewport
+            const revealables = document.querySelectorAll("[data-reveal]");
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("revealed");
+                            // Limpia el delay escalonado luego de la animación
+                            // para que los hovers queden instantáneos.
+                            window.setTimeout(() => {
+                                entry.target.style.setProperty(
+                                    "--reveal-delay",
+                                    "0s",
+                                );
+                            }, 1200);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+            );
+            revealables.forEach((el) => observer.observe(el));
+
+            // 2. Barra de progreso de lectura en la parte superior
+            const progress = document.getElementById("scroll-progress");
+            const header = document.getElementById("site-header");
+
+            const onScroll = () => {
+                const scrollY = window.scrollY;
+                const docHeight =
+                    document.documentElement.scrollHeight - window.innerHeight;
+                const ratio = docHeight > 0 ? scrollY / docHeight : 0;
+
+                if (progress) {
+                    progress.style.transform = `scaleX(${ratio})`;
+                }
+                if (header) {
+                    header.classList.toggle("scrolled", scrollY > 40);
+                }
+            };
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+        </script>
+    </body>
+</html>
