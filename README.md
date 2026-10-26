@@ -28,3 +28,5 @@ npm run preview  # sirve dist/ para probar (localhost:4322)
 - [ ] Más notas de prensa / testimonios (ResultadosComunidad)
 - [ ] Favicon propio (link listo en BaseLayout, comentado)
 - [ ] Definir propuesta comercial del gimnasio → nace la página/FAQ de planes
+- [ ] Horarios pileta liber + costo UP
+- [ ] Seccion indumentaria
