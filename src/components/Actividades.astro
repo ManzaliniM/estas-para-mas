@@ -134,7 +134,7 @@ const semana = [
             },
             {
                 hora: "14:00",
-                actividad: "Multideporte",
+                actividad: "Combinado",
                 lugar: "Plaza EPM",
                 lugarUrl: MAPS.plaza,
             },
@@ -163,32 +163,33 @@ const semana = [
                 image={imgGimnasio}
                 description="Fuerza base y reacondicionamiento físico para todo nivel."
                 schedules={[
-                    { dias: "Lunes y Miércoles", hora: "15:00 y 18:30" },
+                    {
+                        dias: "Lunes, Miércoles y Viernes",
+                        hora: "13:00, 15:00 y 18:30",
+                    },
                     { dias: "Martes y Jueves", hora: "09:00 · 18:00 a 20:00" },
-                    { dias: "Viernes", hora: "13:00 y 18:30" },
                 ]}
-                note="Todos los turnos van acompañados por Mariano."
                 mapUrl={MAPS.misiones}
                 revealDelay={0.1}
             />
 
             <CardActividad
-                title="Trote y Caminata"
+                title="Caminata y Trote"
                 icon="runner"
                 image={imgTrote}
-                description="Del primer paso en salud a los planes de maratón, al ritmo del grupo."
+                description="De la caminata al trote hay menos distancia de la que pensas, paso a paso nos vamos adaptando."
                 schedules={[
                     {
                         dias: "Lunes, Miércoles y Viernes",
                         hora: "16:00",
-                        lugar: "Con Tutto",
+                        lugar: "Con Tutto, desde el gimnasio",
                         lugarUrl: MAPS.misiones,
                     },
                     {
                         dias: "Lunes, Miércoles y Viernes",
                         hora: "14:00",
-                        lugar: "Desde la Plaza EPM",
-                        lugarUrl: MAPS.plaza,
+                        lugar: "Desde el gimnasio",
+                        lugarUrl: MAPS.misiones,
                     },
                     {
                         dias: "Lunes, Miércoles y Viernes",
@@ -197,7 +198,6 @@ const semana = [
                         lugarUrl: MAPS.plaza,
                     },
                 ]}
-                note="Las salidas de las 20:00 arrancan desde la Plaza EPM. El punto de largada se confirma cada semana en el canal del grupo."
                 mapUrl={MAPS.plaza}
                 revealDelay={0.2}
             />
@@ -250,7 +250,7 @@ const semana = [
                         lugarUrl: MAPS.up,
                     },
                 ]}
-                note="También hay otros turnos disponibles en la pileta libre de UP, y clases personalizadas. Consultá."
+                note="Hay más turnos disponibles en la pileta libre de UP y clases personalizadas, consultanos!"
                 mapUrl={MAPS.up}
                 revealDelay={0.4}
             />
@@ -299,28 +299,30 @@ const semana = [
                 }
             </div>
 
-            <!-- Explicación del Multideporte (no es actividad con turno fijo, es modalidad flexible) -->
-            <div class="multideporte-strip" data-reveal>
-                <div class="multideporte-icon">
+            <!-- EL COMBINADO DEL SÁBADO: modalidad flexible de los sábados, sin turno fijo -->
+            <div class="combinado-strip" data-reveal>
+                <div class="combinado-icon">
                     <Icon name="loop" size="1.7rem" strokeWidth={1.6} />
                 </div>
-                <div class="multideporte-texto">
-                    <h4>EL COMBINADO DEL SÁBADO: MULTIDEPORTE</h4>
+                <div class="combinado-texto">
+                    <h4>EL COMBINADO DEL SÁBADO</h4>
                     <p>
-                        Nadá, pedaleá, corré. El Multideporte reúne lo mejor de
-                        las otras actividades en una sola mañana: a las 14:00,
-                        desde la Plaza EPM. No tiene un orden establecido — hay
-                        sábados que son dúatlones, otros triatlones, y otros que
-                        combinan bicicleteada y trote — todo depende de qué esté
-                        preparando el grupo y cada atleta en particular. Es una
-                        modalidad flexible, en grupo reducido: la mejor puerta
-                        de entrada para quien sueña con completar su primer
-                        triatlón.
+                        El combinado del sábado da lugar a un entrenamiento
+                        flexible a cambios de disciplina; podés caminar, trotar,
+                        pedalear y/o nadar, el orden no importa. Según lo que
+                        esté preparando el grupo, lo que esté trabajando cada
+                        alumno y la meta que te hayas propuesto vamos
+                        encontrando el orden del entrenamiento. Los sábados son
+                        para dar lugar al cambio y adaptarse, no te aburrís
+                        nunca y también son la mejor puerta de entrada a tu
+                        primer triatlón, o simplemente a un entrenamiento más
+                        integral: duatlón, acuatlón, lo que venga.
                     </p>
-                    <div class="multideporte-chips">
+                    <div class="combinado-chips">
                         <span>Dúatlón</span>
+                        <span>Acuatlón</span>
                         <span>Triatlón</span>
-                        <span>Combinado variado</span>
+                        <span>Siempre distinto</span>
                     </div>
                 </div>
             </div>
@@ -511,8 +513,8 @@ const semana = [
         border-color: var(--color-brand);
     }
 
-    /* ====== STRIP MULTIDEPORTE ====== */
-    .multideporte-strip {
+    /* ====== STRIP combinado ====== */
+    .combinado-strip {
         display: flex;
         align-items: flex-start;
         gap: 1.75rem;
@@ -525,12 +527,12 @@ const semana = [
         transition: border-color 0.3s ease;
     }
 
-    .multideporte-strip:hover {
+    .combinado-strip:hover {
         border-color: var(--color-border-hover);
         border-left-color: var(--color-brand);
     }
 
-    .multideporte-icon {
+    .combinado-icon {
         flex: 0 0 auto;
         display: flex;
         align-items: center;
@@ -544,28 +546,28 @@ const semana = [
         transform: skewX(-6deg);
     }
 
-    .multideporte-texto h4 {
+    .combinado-texto h4 {
         font-size: 1.1rem;
         font-weight: 900;
         text-transform: uppercase;
         margin: 0 0 0.5rem;
     }
 
-    .multideporte-texto p {
+    .combinado-texto p {
         color: var(--color-text-muted);
         line-height: 1.7;
         margin: 0;
         font-size: 0.95rem;
     }
 
-    .multideporte-chips {
+    .combinado-chips {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
         margin-top: 0.9rem;
     }
 
-    .multideporte-chips span {
+    .combinado-chips span {
         font-size: 0.68rem;
         font-weight: 800;
         letter-spacing: 1.2px;
@@ -646,7 +648,7 @@ const semana = [
             grid-template-columns: 1fr;
         }
 
-        .multideporte-strip {
+        .combinado-strip {
             flex-direction: column;
             align-items: flex-start;
             gap: 1.25rem;

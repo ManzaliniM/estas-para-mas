@@ -15,18 +15,9 @@ public/
 └── og-preview.jpg     # imagen 1200×630 para previews en redes
 ```
 
-## Comandos
-```bash
-npm run dev      # desarrollo local
-npm run build    # compila a dist/ (también genera sitemap y robots.txt)
-npm run preview  # sirve dist/ para probar (localhost:4322)
-```
-
 ## Contenido pendiente
-- [ ] Responder la FAQ comercial (precio, cómo arrancar, dónde entrenamos)
-- [ ] Horarios de largada reales de los objetivos (`data-race` en `ProximosObjetivos.astro`)
-- [ ] Más notas de prensa / testimonios (ResultadosComunidad)
-- [ ] Favicon propio (link listo en BaseLayout, comentado)
-- [ ] Definir propuesta comercial del gimnasio → nace la página/FAQ de planes
-- [ ] Horarios pileta liber + costo UP
-- [ ] Seccion indumentaria
+- [ ] Terminar de redactar FAQ.
+- [ ] Horarios de largada reales de los objetivos (`data-race` en `ProximosObjetivos.astro`).
+- [ ] Más notas de prensa / testimonios.
+- [ ] Horarios pileta liber + costo UP.
+- [ ] Seccion indumentaria.
