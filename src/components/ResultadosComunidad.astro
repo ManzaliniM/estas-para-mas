@@ -5,6 +5,8 @@
 // el grupo (link al post completo). Las noticias y entrevistas se suman.
 
 import Icon from "./Icon.astro";
+import { Image } from "astro:assets";
+import entrevistaImg from "../assets/entrevista-yt.jpg";
 
 // Highlights reales del perfil de Instagram
 const highlights = [
@@ -21,8 +23,15 @@ const highlights = [
 const noticias = [
     {
         medio: "El Diario de Tandil",
+        fecha: "27/04/2023",
         titulo: "Una destacada actuación tuvieron los triatletas tandilenses que compitieron en Entre Ríos",
         url: "https://www.eldiariodetandil.com/nota-una-destaca-actuacion-tuvieron-los-triatletas-tandilenses-que-compitieron-en-entre-rios-94991",
+    },
+    {
+        medio: "El Diario de Tandil",
+        fecha: "11/01/2023",
+        titulo: "El team \"Estás Para Más\" tendrá representación en el Ironman de Finlandia",
+        url: "https://www.eldiariodetandil.com/nota-el-team-estas-para-mas-tendra-representacion-en-el-ironman-de-finlandia--94169",
     },
     // { medio: "...", titulo: "...", url: "..." },
 ];
@@ -59,7 +68,11 @@ const noticias = [
                             class="historia-row"
                         >
                             <div class="historia-info">
-                                <span class="historia-medio">{n.medio}</span>
+                                <span class="historia-medio"
+                                    >{n.medio}<span class="historia-fecha"
+                                        >{n.fecha}</span
+                                    ></span
+                                >
                                 <span class="historia-titulo">{n.titulo}</span>
                             </div>
                             <span class="row-arrow">
@@ -68,19 +81,6 @@ const noticias = [
                         </a>
                     ))
                 }
-
-                <!-- Placeholder para próximas notas (se suman con Mariano) -->
-                <div class="historia-row historia-tbd">
-                    <div class="historia-info">
-                        <span class="historia-medio">PRÓXIMAMENTE</span>
-                        <span class="historia-titulo"
-                            >Buscando notas relevantes...</span
-                        >
-                    </div>
-                    <span class="row-arrow">
-                        <Icon name="arrow" size="1.1rem" />
-                    </span>
-                </div>
             </div>
 
             <!-- Columna central: entrevista + testimonio -->
@@ -94,9 +94,10 @@ const noticias = [
                     style="--reveal-delay:0.2s"
                 >
                     <div class="entrevista-thumb">
-                        <img
-                            src="/img/entrevista-yt.jpg"
+                        <Image
+                            src={entrevistaImg}
                             alt="Miniatura de la entrevista al Prof. Mariano Manzalini en YouTube"
+                            width={480}
                             loading="lazy"
                         />
                         <span class="play-badge">
@@ -107,8 +108,14 @@ const noticias = [
                         <Icon name="video" size="1.1rem" /> ENTREVISTAS
                     </span>
                     <strong class="entrevista-titulo">
-                        Métodos, valores y el triatlón.
+                        Santiago Cataldo y Mariano Manzalini — Iron Man
+                        Triatlón Entre Ríos 2025.
                     </strong>
+                    <span class="entrevista-meta">
+                        Conducida por Hugo Alberto Rodríguez · Cataldo se
+                        consagró con 9h20; Mariano, preparador de los
+                        campeones, cerró 20° general con 11h22.
+                    </span>
                 </a>
 
                 <!-- Testimonio: adaptación breve de la reflexión publicada por el grupo -->
@@ -288,15 +295,18 @@ const noticias = [
         text-transform: uppercase;
     }
 
+    /* Fecha de la nota, acompañando al medio */
+    .historia-fecha {
+        margin-left: 0.75rem;
+        color: var(--color-text-subtle);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
     .historia-titulo {
         color: var(--color-text-secondary);
         font-size: 0.92rem;
         line-height: 1.45;
-    }
-
-    .historia-tbd {
-        border-style: dashed;
-        opacity: 0.75;
     }
 
     /* Entrevistas (card destacada con miniatura del video) */
@@ -331,7 +341,7 @@ const noticias = [
         border: 1px solid var(--color-border-strong);
     }
 
-    .entrevista-thumb img {
+    .entrevista-thumb :global(img) {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -341,7 +351,7 @@ const noticias = [
             transform 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
     }
 
-    .entrevista-card:hover .entrevista-thumb img {
+    .entrevista-card:hover .entrevista-thumb :global(img) {
         filter: grayscale(0%);
         transform: scale(1.04);
     }
@@ -376,6 +386,17 @@ const noticias = [
         font-size: 0.95rem;
         font-weight: 700;
         line-height: 1.5;
+    }
+
+    /* Bajo el título: quién conduce + resumen del resultado */
+    .entrevista-meta {
+        font-size: 0.78rem;
+        line-height: 1.55;
+        color: var(--color-text-muted);
+    }
+
+    .entrevista-card:hover .entrevista-meta {
+        color: var(--color-text-secondary);
     }
 
     /* Testimonios (adaptación de la reflexión de la comunidad) */

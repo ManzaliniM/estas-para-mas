@@ -2,11 +2,11 @@
 // src/components/Actividades.astro
 import CardActividad from "./CardActividad.astro";
 import Icon from "./Icon.astro";
-
-// Número de WhatsApp del grupo (Mariano) — mensaje unificado en todo el sitio
-const WA_NUMBER = "5492494377348";
-const WA_MSG =
-    "Hola%20Mariano%2C%20vi%20la%20p%C3%A1gina%20web%20de%20Est%C3%A1s%20Para%20M%C3%A1s%20y%20quiero%20empezar%20a%20entrenar.%20%C2%BFC%C3%B3mo%20hago%3F";
+import imgGimnasio from "../assets/gimnasio.jpg";
+import imgTrote from "../assets/trote.jpg";
+import imgBici from "../assets/bici.jpg";
+import imgNatacion from "../assets/natacion.jpg";
+import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
 
 // Lugares donde entrena el grupo (links de Google Maps pasados por Mariano)
 const MAPS = {
@@ -160,7 +160,7 @@ const semana = [
             <CardActividad
                 title="Gimnasio"
                 icon="dumbbell"
-                image="/img/gimnasio.jpg"
+                image={imgGimnasio}
                 description="Fuerza base y reacondicionamiento físico para todo nivel."
                 schedules={[
                     { dias: "Lunes y Miércoles", hora: "15:00 y 18:30" },
@@ -175,7 +175,7 @@ const semana = [
             <CardActividad
                 title="Trote y Caminata"
                 icon="runner"
-                image="/img/trote.jpg"
+                image={imgTrote}
                 description="Del primer paso en salud a los planes de maratón, al ritmo del grupo."
                 schedules={[
                     {
@@ -199,7 +199,7 @@ const semana = [
             <CardActividad
                 title="Ciclismo"
                 icon="bike"
-                image="/img/bici.jpg"
+                image={imgBici}
                 description="Combinación de trabajo en sala y salidas de exterior por cerros y ruta."
                 schedules={[
                     {
@@ -228,7 +228,7 @@ const semana = [
             <CardActividad
                 title="Natación"
                 icon="swimmer"
-                image="/img/natacion.jpg"
+                image={imgNatacion}
                 description="Técnica y continuidad en la pileta libre de UP."
                 schedules={[
                     {

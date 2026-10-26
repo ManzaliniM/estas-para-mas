@@ -7,10 +7,16 @@ interface Props {
     description?: string;
 }
 
-const {
-    title,
-    description = "Gimnasio y grupo de entrenamiento multidisciplinario en Tandil. Preparación integral para caminatas, running, triatlones e Ironman liderado por el Prof. Mariano Manzalini.",
-} = Astro.props;
+// Dominio del sitio (Placeholder actual).
+// ÚNICA fuente de verdad: astro.config.mjs → site. Cambialo solo ahí.
+const SITE_URL = import.meta.env.SITE;
+
+const OG_TITLE = "ESTÁS PARA MÁS!!! — Grupo de entrenamiento en Tandil";
+const OG_DESCRIPTION =
+    "Entrenamiento multidisciplinario con el Prof. Mariano Manzalini: fuerza, trote, ciclismo y natación. Del que empieza a caminar al Ironman.";
+const OG_IMAGE = `${SITE_URL}/og-preview.jpg`;
+
+const { title, description = "Gimnasio y grupo de entrenamiento multidisciplinario en Tandil. Preparación integral para caminatas, running, triatlones e Ironman liderado por el Prof. Mariano Manzalini.", } = Astro.props;
 ---
 
 <!doctype html>
@@ -29,6 +35,25 @@ const {
             content="gimnasio tandil, triatlon tandil, entrenamiento maraton tandil, running tandil, mariano manzalini, estas para mas tandil, ironman argentina"
         />
         <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={SITE_URL} />
+
+        <!-- Open Graph / WhatsApp / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Estás Para Más" />
+        <meta property="og:locale" content="es_AR" />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:title" content={OG_TITLE} />
+        <meta property="og:description" content={OG_DESCRIPTION} />
+        <meta property="og:image" content={OG_IMAGE} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Grupo de entrenamiento Estás Para Más celebrando en la meta" />
+
+        <!-- Twitter / X -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={OG_TITLE} />
+        <meta name="twitter:description" content={OG_DESCRIPTION} />
+        <meta name="twitter:image" content={OG_IMAGE} />
 
         <!-- Estilos Globales (importados en el frontmatter) -->
     </head>

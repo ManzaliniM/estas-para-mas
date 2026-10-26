@@ -5,10 +5,7 @@
 // Reemplazá los placeholders "..." cuando tengas los logos reales.
 
 import Icon from "./Icon.astro";
-
-// Mensaje unificado de WhatsApp (igual al resto del sitio)
-const WA_MSG =
-    "Hola%20Mariano%2C%20vi%20la%20p%C3%A1gina%20web%20de%20Est%C3%A1s%20Para%20M%C3%A1s%20y%20quiero%20empezar%20a%20entrenar.%20%C2%BFC%C3%B3mo%20hago%3F";
+import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
 
 const sponsors = [
     { name: "HASHTAG STORE", url: "https://www.hashtagstore.com.ar/" },
@@ -75,7 +72,7 @@ const sponsors = [
         </p>
         <span>Te invitamos a sumarte como sponsor y acompañar nuestro camino.</span>
         <a
-            href={`https://wa.me/5492494377348?text=${WA_MSG}`}
+            href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
             target="_blank"
             rel="noopener noreferrer"
         >
