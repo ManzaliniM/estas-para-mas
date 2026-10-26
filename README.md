@@ -1,6 +1,5 @@
 # ESTÁS PARA MÁS !!!
-Landing page oficial del grupo de entrenamiento multidisciplinario **Estás Para Más** — Tandil, Buenos Aires, Argentina.
-- Hoy el sitio descansa en la URL por defecto de Netlify (`*.netlify.app`)
+Landing page oficial del grupo de entrenamiento multidisciplinario **[Estás Para Más](https://estasparamas.netlify.app)** — Tandil, Buenos Aires, Argentina.
 
 ## Estructura
 ```

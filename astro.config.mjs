@@ -4,8 +4,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-    // PENDIENTE: reemplazar por el dominio real cuando esté registrado.
-    // Todo lo canónico (sitemap, robots, og:url) sale de acá — una sola línea.
-    site: 'https://www.estasparamas.com.ar',
+    // URL de producción: el subdominio de Netlify mientras no haya dominio .ar.
+    // Cuando exista el dominio real, cambiar SOLO esta línea.
+    site: 'https://estasparamas.netlify.app',
     integrations: [sitemap()],
 });
