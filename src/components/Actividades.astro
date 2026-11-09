@@ -33,10 +33,10 @@ const semana = [
                 lugar: "UP",
                 lugarUrl: MAPS.up,
             },
+            { hora: "13:00", actividad: "Gimnasio" },
             { hora: "14:00", actividad: "Trote y Caminata" },
-            { hora: "15:00", actividad: "Gimnasio con profesor" },
-            { hora: "16:00", actividad: "Trota con Tutto" },
-            { hora: "18:30", actividad: "Gimnasio con profesor" },
+            { hora: "15:00", actividad: "Gimnasio" },
+            { hora: "18:30", actividad: "Gimnasio" },
             {
                 hora: "20:00",
                 actividad: "Trote y Caminata",
@@ -48,15 +48,15 @@ const semana = [
     {
         dia: "Martes",
         turnos: [
-            { hora: "09:00", actividad: "Gimnasio con profesor" },
+            { hora: "09:00", actividad: "Gimnasio" },
             {
                 hora: "14:00",
                 actividad: "Ciclismo exterior · MTB",
                 lugar: "Plaza EPM",
                 lugarUrl: MAPS.plaza,
             },
+            { hora: "18:00–20:00", actividad: "Gimnasio" },
             { hora: "18:00", actividad: "Ciclismo en Sala" },
-            { hora: "18:00–20:00", actividad: "Gimnasio con profesor" },
             { hora: "19:00", actividad: "Ciclismo en Sala" },
         ],
     },
@@ -75,10 +75,10 @@ const semana = [
                 lugar: "UP",
                 lugarUrl: MAPS.up,
             },
+            { hora: "13:00", actividad: "Gimnasio" },
             { hora: "14:00", actividad: "Trote y Caminata" },
-            { hora: "15:00", actividad: "Gimnasio con profesor" },
-            { hora: "16:00", actividad: "Trota con Tutto" },
-            { hora: "18:30", actividad: "Gimnasio con profesor" },
+            { hora: "15:00", actividad: "Gimnasio" },
+            { hora: "18:30", actividad: "Gimnasio" },
             {
                 hora: "20:00",
                 actividad: "Trote y Caminata",
@@ -90,25 +90,25 @@ const semana = [
     {
         dia: "Jueves",
         turnos: [
-            { hora: "09:00", actividad: "Gimnasio con profesor" },
+            { hora: "09:00", actividad: "Gimnasio" },
             {
                 hora: "14:00",
                 actividad: "Ciclismo exterior · Ruta",
                 lugar: "Pista",
                 lugarUrl: MAPS.pista,
             },
+            { hora: "18:00–20:00", actividad: "Gimnasio" },
             { hora: "18:00", actividad: "Ciclismo en Sala" },
-            { hora: "18:00–20:00", actividad: "Gimnasio con profesor" },
             { hora: "19:00", actividad: "Ciclismo en Sala" },
         ],
     },
     {
         dia: "Viernes",
         turnos: [
-            { hora: "13:00", actividad: "Gimnasio con profesor" },
+            { hora: "13:00", actividad: "Gimnasio" },
             { hora: "14:00", actividad: "Trote y Caminata" },
-            { hora: "16:00", actividad: "Trota con Tutto" },
-            { hora: "18:30", actividad: "Gimnasio con profesor" },
+            { hora: "15:00", actividad: "Gimnasio" },
+            { hora: "18:30", actividad: "Gimnasio" },
             {
                 hora: "20:00",
                 actividad: "Trote y Caminata",
@@ -177,18 +177,12 @@ const semana = [
                 title="Caminata y Trote"
                 icon="runner"
                 image={imgTrote}
-                description="De la caminata al trote hay menos distancia de la que pensas, paso a paso nos vamos adaptando."
+                description="De la caminata al trote hay menos distancia de la que pensás, paso a paso nos vamos adaptando."
                 schedules={[
                     {
                         dias: "Lunes, Miércoles y Viernes",
                         hora: "14:00",
                         lugar: "Desde el gimnasio",
-                        lugarUrl: MAPS.misiones,
-                    },
-                    {
-                        dias: "Lunes, Miércoles y Viernes",
-                        hora: "16:00",
-                        lugar: "Trota con Tutto, desde el gimnasio",
                         lugarUrl: MAPS.misiones,
                     },
                     {
@@ -264,8 +258,8 @@ const semana = [
                 </h3>
                 <p>
                     Los horarios pueden cambiar según el mes: cada cambio se
-                    avisa primero en el grupo de WhatsApp y a la brevedad
-                    queda actualizado en el sitio.
+                    avisa primero en el grupo de WhatsApp y a la brevedad queda
+                    actualizado en el sitio.
                 </p>
             </div>
 
@@ -318,18 +312,8 @@ const semana = [
                         pedalear y/o nadar, el orden no importa. Según lo que
                         esté preparando el grupo, lo que esté trabajando cada
                         alumno y la meta que te hayas propuesto vamos
-                        encontrando el orden del entrenamiento. Los sábados son
-                        para dar lugar al cambio y adaptarse, no te aburrís
-                        nunca y también son la mejor puerta de entrada a tu
-                        primer triatlón, o simplemente a un entrenamiento más
-                        integral: duatlón, acuatlón, lo que venga.
+                        encontrando el orden del entrenamiento.
                     </p>
-                    <div class="combinado-chips">
-                        <span>Dúatlón</span>
-                        <span>Acuatlón</span>
-                        <span>Triatlón</span>
-                        <span>Siempre distinto</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -373,7 +357,7 @@ const semana = [
     }
 
     h2 {
-        font-size: 3rem;
+        font-size: var(--font-size-section-heading);
         font-weight: 900;
         text-transform: uppercase;
         margin: 0.5rem 0 1rem;
@@ -381,7 +365,7 @@ const semana = [
 
     .section-title-block p {
         color: var(--color-text-muted);
-        font-size: 1.1rem;
+        font-size: var(--font-size-body);
         max-width: 600px;
         margin: 0 auto;
     }
@@ -419,7 +403,7 @@ const semana = [
     .semana-header p {
         color: var(--color-text-muted);
         margin: 0;
-        font-size: 0.95rem;
+        font-size: var(--font-size-body);
     }
 
     .semana-grid {
@@ -431,7 +415,7 @@ const semana = [
     .dia-card {
         background-color: var(--color-surface);
         border: 1px solid var(--color-border-strong);
-        border-radius: 10px;
+        border-radius: var(--radius-card);
         padding: 1.4rem 1.5rem;
         transition:
             transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1),
@@ -526,7 +510,7 @@ const semana = [
         margin-top: 2rem;
         border: 1px solid var(--color-border-strong);
         border-left: 4px solid var(--color-brand);
-        border-radius: 12px;
+        border-radius: var(--radius-card);
         padding: 1.75rem 2rem;
         background-color: var(--color-surface);
         transition: border-color 0.3s ease;
@@ -562,26 +546,7 @@ const semana = [
         color: var(--color-text-muted);
         line-height: 1.7;
         margin: 0;
-        font-size: 0.95rem;
-    }
-
-    .combinado-chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 0.9rem;
-    }
-
-    .combinado-chips span {
-        font-size: 0.68rem;
-        font-weight: 800;
-        letter-spacing: 1.2px;
-        text-transform: uppercase;
-        color: var(--color-brand);
-        background-color: rgba(255, 42, 42, 0.08);
-        border: 1px solid rgba(255, 42, 42, 0.25);
-        padding: 0.2rem 0.55rem;
-        border-radius: 3px;
+        font-size: var(--font-size-body);
     }
 
     /* ====== CTA DE CIERRE ====== */
@@ -593,7 +558,7 @@ const semana = [
         flex-wrap: wrap;
         gap: 1.5rem;
         border: 1px solid var(--color-border-strong);
-        border-radius: 10px;
+        border-radius: var(--radius-card);
         padding: 1.75rem 2rem;
         background-color: var(--color-surface);
     }
@@ -645,10 +610,6 @@ const semana = [
     }
 
     @media (max-width: 640px) {
-        h2 {
-            font-size: 2.2rem;
-        }
-
         .semana-grid {
             grid-template-columns: 1fr;
         }

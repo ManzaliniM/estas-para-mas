@@ -10,22 +10,22 @@ const valores = [
     {
         icon: "users",
         titulo: "Inclusión y accesibilidad",
-        texto: "No importa el nivel de entrenamiento ni la edad: cualquiera puede compartir el movimiento. Todos tienen algo que aportar, y el disfrute de superar sus límites. Desde el caminante recreativo hasta el triatleta.",
+        texto: "No importa tu edad ni tu nivel: hay un lugar para compartir el movimiento, desde una caminata recreativa hasta el triatlón. Cada persona aporta algo y disfruta sus propios logros.",
     },
     {
         icon: "clock",
         titulo: "Salud a través de la constancia",
-        texto: "El deporte como hábito de bienestar diario, con metas realistas y progresivas que cuidan el cuerpo, sin lesiones ni sobreentrenamiento. Rutinas adaptadas a los diversos factores de tus condiciones físicas.",
+        texto: "Promovemos el deporte como hábito de bienestar, con metas realistas y progresivas. Las intensidades se ajustan a cada persona para cuidar el cuerpo y reducir el riesgo de lesiones y sobreentrenamiento.",
     },
     {
         icon: "mountain",
-        titulo: "Comunidad e incentivación",
-        texto: "Entrenar en equipo como herramienta de contención mutua para superar las barreras mentales y disfrutar del movimiento. La propia comunidad te incentiva.",
+        titulo: "Comunidad y acompañamiento",
+        texto: "Entrenar en equipo ayuda a sostener la motivación, superar barreras y disfrutar del movimiento. El grupo te acompaña en el proceso.",
     },
     {
         icon: "grad",
         titulo: "Educación y entendimiento",
-        texto: 'Aprendizaje continuo para tener un entendimiento sobre el ejercicio y los efectos en tu cuerpo. Ciencia aplicada de la educación física que responde el "¿Para que me sirve?\" de cada ejercicio.',
+        texto: "Aplicamos conocimientos de educación física para que entiendas qué trabajás y para qué sirve cada ejercicio.",
     },
 ];
 ---
@@ -38,9 +38,9 @@ const valores = [
                 ¿QUÉ <span class="highlight">SIGNIFICA</span> “ESTÁS PARA MÁS”?
             </h2>
             <p>
-                Es la convicción de que podés ir más lejos de lo que creés.  
-                <br />Es pertenecer a un grupo que te acompaña en cada paso, con
-                entrenamientos progresivos y metas realistas. Y que cuando dudes, siempre van a incentivarte.
+                Creemos que podés llegar más lejos de lo que pensás. En el grupo
+                te acompañamos con entrenamientos progresivos y metas realistas.
+                Y cuando aparezcan las dudas, nos alentamos para seguir.
             </p>
         </div>
 
@@ -102,7 +102,7 @@ const valores = [
 
 
     h2 {
-        font-size: clamp(1.9rem, 4vw, 2.6rem);
+        font-size: var(--font-size-section-heading);
         font-weight: 900;
         text-transform: uppercase;
         margin: 0.5rem 0 1.25rem;
@@ -115,7 +115,7 @@ const valores = [
         margin: 0 auto;
         color: var(--color-text-muted);
         line-height: 1.7;
-        font-size: 1.05rem;
+        font-size: var(--font-size-body);
     }
 
     /* ====== GRILLA DE VALORES ====== */
@@ -129,7 +129,7 @@ const valores = [
     .valor-card {
         background-color: var(--color-surface);
         border: 1px solid var(--color-border-strong);
-        border-radius: 12px;
+        border-radius: var(--radius-card);
         padding: 2rem;
         transition:
             transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1),
@@ -178,7 +178,7 @@ const valores = [
     .valor-card p {
         color: var(--color-text-muted);
         line-height: 1.65;
-        font-size: 0.95rem;
+        font-size: var(--font-size-body);
         margin: 0;
     }
 

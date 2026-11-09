@@ -17,104 +17,190 @@ import Icon from "./Icon.astro";
 
         <div class="accordion">
             <div class="accordion-item" data-reveal>
-                <button class="accordion-trigger">
-                    <span>¿Necesito tener <span class="highlight">experiencia previa</span>?</span>
-                    <span class="icon"
-                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
-                    >
-                </button>
-                <div class="accordion-panel">
-                    <p>
-                        No se necesita de ningún tipo de experiencia previa. El
-                        grupo abarca desde caminatas recreativas y
-                        reacondicionamiento en el gimnasio hasta el alto
-                        rendimiento. Cada planificación se adapta de forma
-                        estrictamente individual a tu realidad actual.
-                    </p>
-                </div>
-            </div>
-
-            <div class="accordion-item" data-reveal>
-                <button class="accordion-trigger">
-                    <span>¿Puedo ir <span class="highlight">solamente al gimnasio</span>?</span>
-                    <span class="icon"
-                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
-                    >
-                </button>
-                <div class="accordion-panel">
-                    <p>
-                        Sí, podés optar por entrenar fuerza sin obligación de
-                        formar parte de las salidas de running o triatlón.
-                    </p>
-                </div>
-            </div>
-
-            <div class="accordion-item" data-reveal>
-                <button class="accordion-trigger">
+                <button
+                    class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="faq-panel-experiencia"
+                >
                     <span
-                        >¿<span class="highlight">Cómo me entero</span> de los
-                        entrenamientos de cada semana?</span
+                        >¿Necesito tener <span class="highlight"
+                            >experiencia previa</span
+                        >?</span
                     >
                     <span class="icon"
-                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
+                        ><Icon
+                            name="chevron"
+                            size="1.3rem"
+                            strokeWidth={2.2}
+                        /></span
                     >
                 </button>
-                <div class="accordion-panel">
+                <div
+                    class="accordion-panel"
+                    id="faq-panel-experiencia"
+                    aria-hidden="true"
+                >
                     <p>
-                        Cada semana Mariano envía el plan por un canal de
-                        difusión de WhatsApp, al que se accede una vez que ya
-                        sos parte del grupo. Es una rutina grupal: la sesión es
-                        la misma para todos, y cada uno la trabaja con su propio
-                        porcentaje de intensidad.
+                        No hace falta tener experiencia previa. Hay lugar para
+                        todos los niveles: desde quienes empiezan con caminatas
+                        o entrenamiento en el gimnasio hasta quienes se preparan
+                        para competir.
                     </p>
                 </div>
             </div>
 
             <div class="accordion-item" data-reveal>
-                <button class="accordion-trigger">
-                    <span>¿Cuánto <span class="highlight">cuesta</span>?</span>
+                <button
+                    class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="faq-panel-gimnasio"
+                >
+                    <span
+                        >¿Puedo ir <span class="highlight"
+                            >solamente al gimnasio</span
+                        >?</span
+                    >
                     <span class="icon"
-                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
+                        ><Icon
+                            name="chevron"
+                            size="1.3rem"
+                            strokeWidth={2.2}
+                        /></span
                     >
                 </button>
-                <div class="accordion-panel">
+                <div
+                    class="accordion-panel"
+                    id="faq-panel-gimnasio"
+                    aria-hidden="true"
+                >
                     <p>
-                        Si el precio es "charlarlo con Mariano" está bien como
-                        estrategia pero entonces conviene una FAQ que diga
-                        explícito cuándo coordinamos el valor de la cuota
+                        Sí, podés sumarte a los entrenamientos de gimnasio sin
+                        participar de las salidas grupales.
                     </p>
                 </div>
             </div>
 
             <div class="accordion-item" data-reveal>
-                <button class="accordion-trigger">
+                <button
+                    class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="faq-panel-entrenamientos"
+                >
+                    <span
+                        >¿<span class="highlight">Cómo me entero</span> de los entrenamientos
+                        de cada semana?</span
+                    >
+                    <span class="icon"
+                        ><Icon
+                            name="chevron"
+                            size="1.3rem"
+                            strokeWidth={2.2}
+                        /></span
+                    >
+                </button>
+                <div
+                    class="accordion-panel"
+                    id="faq-panel-entrenamientos"
+                    aria-hidden="true"
+                >
+                    <p>
+                        Una vez que te sumás al grupo, Mariano comparte cada
+                        semana el plan por un canal de difusión de WhatsApp. La
+                        propuesta es grupal y cada persona adapta la intensidad
+                        a su nivel.
+                    </p>
+                </div>
+            </div>
+
+            <div class="accordion-item" data-reveal>
+                <button
+                    class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="faq-panel-cuota"
+                >
+                    <span
+                        >¿Cuál es el <span class="highlight"
+                            >valor de la cuota</span
+                        >?</span
+                    >
+                    <span class="icon"
+                        ><Icon
+                            name="chevron"
+                            size="1.3rem"
+                            strokeWidth={2.2}
+                        /></span
+                    >
+                </button>
+                <div
+                    class="accordion-panel"
+                    id="faq-panel-cuota"
+                    aria-hidden="true"
+                >
+                    <p>
+                        La cuota mensual es de $50.000 (valor actualizado en
+                        mayo de 2026) e incluye las actividades del grupo. Vos
+                        elegís a cuáles asistir y cuántas veces por semana. La
+                        pileta libre de UP requiere una inscripción aparte y no
+                        está incluida en la cuota.
+                    </p>
+                </div>
+            </div>
+
+            <div class="accordion-item" data-reveal>
+                <button
+                    class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="faq-panel-lugares"
+                >
                     <span
                         >¿<span class="highlight">Dónde</span> entrenamos?</span
                     >
                     <span class="icon"
-                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
+                        ><Icon
+                            name="chevron"
+                            size="1.3rem"
+                            strokeWidth={2.2}
+                        /></span
                     >
                 </button>
-                <div class="accordion-panel">
+                <div
+                    class="accordion-panel"
+                    id="faq-panel-lugares"
+                    aria-hidden="true"
+                >
                     <p>
-                        aclarar que la base es Misiones 868 y que cada actividad
-                        tiene su punto.
+                        El gimnasio está en Misiones 868. Las salidas y otras
+                        actividades tienen distintos puntos de encuentro; en
+                        cada tarjeta de actividades podés ver cuál corresponde.
                     </p>
                 </div>
             </div>
 
             <div class="accordion-item" data-reveal>
-                <button class="accordion-trigger">
+                <button
+                    class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="faq-panel-inicio"
+                >
                     <span>¿Cómo <span class="highlight">arranco</span>?</span>
                     <span class="icon"
-                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
+                        ><Icon
+                            name="chevron"
+                            size="1.3rem"
+                            strokeWidth={2.2}
+                        /></span
                     >
                 </button>
-                <div class="accordion-panel">
+                <div
+                    class="accordion-panel"
+                    id="faq-panel-inicio"
+                    aria-hidden="true"
+                >
                     <p>
-                        Que pasa después de escribirles por WhatsApp? ¿clase de
-                        prueba? ¿entrevista? Tres pasos Escribinos →
-                        charla/primer día → armamos tu plan
+                        Escribinos por WhatsApp o Instagram y coordinamos una
+                        charla y tu primer día de prueba. Si decidís sumarte,
+                        Mariano te incorpora al plan grupal y al canal de
+                        difusión de WhatsApp.
                     </p>
                 </div>
             </div>
@@ -128,16 +214,16 @@ import Icon from "./Icon.astro";
 
     triggers.forEach((trigger) => {
         trigger.addEventListener("click", () => {
-            const item = trigger.parentElement;
-            // El ?. asegura que si 'item' es null, no tire error catastrófico
-            item?.classList.toggle("active");
+            const isExpanded = trigger.getAttribute("aria-expanded") === "true";
 
-            // Solo un panel abierto a la vez (efecto acordeón real)
-            const items = document.querySelectorAll(".accordion-item");
-            items.forEach((other) => {
-                if (other !== item && other.classList.contains("active")) {
-                    other.classList.remove("active");
-                }
+            triggers.forEach((otherTrigger) => {
+                const isOpen = otherTrigger === trigger && !isExpanded;
+                const item = otherTrigger.closest(".accordion-item");
+                const panel = otherTrigger.nextElementSibling;
+
+                otherTrigger.setAttribute("aria-expanded", String(isOpen));
+                panel?.setAttribute("aria-hidden", String(!isOpen));
+                item?.classList.toggle("active", isOpen);
             });
         });
     });
@@ -162,11 +248,12 @@ import Icon from "./Icon.astro";
         margin-bottom: 0.75rem;
     }
     h2 {
-        font-size: 2.5rem;
+        font-size: var(--font-size-section-heading);
         font-weight: 900;
     }
     .faq-header p {
         color: var(--color-text-muted);
+        font-size: var(--font-size-body);
         margin-top: 0.5rem;
     }
     .accordion {
@@ -177,7 +264,7 @@ import Icon from "./Icon.astro";
     .accordion-item {
         background-color: var(--color-surface);
         border: 1px solid var(--color-border-strong);
-        border-radius: 6px;
+        border-radius: var(--radius-card);
         overflow: hidden;
         transition: border-color 0.2s;
     }
@@ -240,10 +327,6 @@ import Icon from "./Icon.astro";
     @media (max-width: 640px) {
         .faq-section {
             padding: 4.5rem 1.25rem;
-        }
-
-        h2 {
-            font-size: 1.9rem;
         }
     }
 </style>

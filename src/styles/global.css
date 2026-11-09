@@ -17,6 +17,9 @@
     --color-brand: #ff2a2a;
     --color-brand-hover: #d61f1f;
     --color-brand-shadow: rgba(255, 42, 42, 0.4);
+    --font-size-section-heading: clamp(1.9rem, 4vw, 2.6rem);
+    --font-size-body: 1rem;
+    --radius-card: 10px;
 }
 
 /* Reset de márgenes y box-sizing */

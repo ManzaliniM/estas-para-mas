@@ -102,7 +102,7 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
     }
 
     h2 {
-        font-size: 2.6rem;
+        font-size: var(--font-size-section-heading);
         font-weight: 900;
         text-transform: uppercase;
         margin: 0.5rem 0 1.25rem;
@@ -151,7 +151,7 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
         gap: 1.5rem;
         background-color: var(--color-surface);
         border: 1px solid var(--color-border-strong);
-        border-radius: 10px;
+        border-radius: var(--radius-card);
         padding: 1.5rem 1.75rem;
         text-decoration: none;
         transition:
@@ -212,7 +212,7 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
     .card-info p {
         margin: 0;
         color: var(--color-text-muted);
-        font-size: 0.92rem;
+        font-size: var(--font-size-body);
         line-height: 1.45;
     }
 
@@ -237,10 +237,6 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
     @media (max-width: 640px) {
         .contacto-section {
             padding: 4.5rem 1.25rem;
-        }
-
-        h2 {
-            font-size: 1.9rem;
         }
 
         .contacto-card {
