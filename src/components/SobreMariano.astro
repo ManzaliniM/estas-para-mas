@@ -16,9 +16,29 @@ import marianoImg from "../assets/mariano.jpg";
                     sizes="(max-width: 968px) 92vw, 46vw"
                     loading="lazy"
                 />
-                <div class="border-effect"></div>
+                <!-- Velo: funde la foto con el fondo (sin marco) -->
+                <div class="border-effect" aria-hidden="true"></div>
+            </div>
+        </div>
+
+        <div class="about-content" data-reveal>
+            <span class="section-tag">EL ENTRENADOR</span>
+            <h2>MARIANO <span class="highlight">MANZALINI</span></h2>
+            <p class="lead">
+                El objetivo de Mariano no es solo entrenar: es enseñar a cada
+                uno a superar sus propios límites de forma inteligente y
+                segura.
+            </p>
+
+            <!-- Stat migrado del hero: el dato de trayectoria pertenece acá -->
+            <div class="trayectoria-strip">
+                <span class="trayectoria-numero">33+</span>
+                <p class="trayectoria-texto">
+                    Años de trayectoria<br />formando en Tandil
+                </p>
             </div>
 
+            <!-- Credenciales al pie de la bio (la foto ahora destaca sola) -->
             <div class="credenciales">
                 <div class="credencial-item">
                     <span class="credencial-icon">
@@ -46,54 +66,6 @@ import marianoImg from "../assets/mariano.jpg";
                 <p class="quote-principal">Lo importante es compartir.</p>
             </div>
         </div>
-
-        <div class="about-content" data-reveal>
-            <span class="section-tag">EL ENTRENADOR</span>
-            <h2>MARIANO <span class="highlight">MANZALINI</span></h2>
-            <p class="lead">
-                Con más de 33 años de trayectoria en Tandil, el objetivo de
-                Mariano no es solo entrenar: es enseñar a cada uno a superar sus
-                propios límites de forma inteligente y segura.
-            </p>
-            <p class="biography">WIP</p>
-            <!-- <p class="biography">
-                A lo largo de su carrera Mariano planificó y acompañó las metas
-                de cientos de alumnos. Desde quienes buscan recuperar su
-                vitalidad caminando, hasta atletas de élite cruzando las metas
-                de los Ironman y los triatlones más exigentes. Acompañando
-                desde una posición activa, el también se pone el dorsal y corre
-                sus propias competencias. En constante formación, se mantiene
-                participando de cursos y capacitaciones diversas para que cada
-                planificación tenga fundamento. Los resultados que cosechan los
-                demás son para él la mayor recompensa.
-            </p>
-            <p class="biography">
-                Su rol es integral y va mucho más allá de armar una rutina
-                física: es un formador capaz de detectar el talento bruto y
-                sostener psicológicamente a sus atletas en las carreras más
-                extremas, defendiendo una visión metodológica clara frente a las
-                tendencias comerciales del running actual. En las horas
-                extenuantes de un Ironman lo vas a encontrar en el circuito:
-                corriendo y “vigilando desde el fondo”, midiendo las distancias
-                de los chicos, alentándolos y cuidando la estrategia en todo
-                momento. Ese liderazgo afectivo construyó algo más difícil que
-                un triunfo deportivo: un ambiente donde el éxito de uno se
-                siente como el de todos.
-            </p>
-            <p class="biography">
-                Su filosofía pone la salud y la progresión por delante de la
-                intensidad: rechaza el error común de querer ir al límite en
-                cada sesión. Lo más inteligente es “ir fuerte, pero con el pie
-                en el freno”: terminar sanos y sin lesiones es el verdadero
-                triunfo, porque una lesión te hace perder mucho más de lo que se
-                gana por sobreentrenar. Por eso el triatlón — el deporte más
-                completo — es su terreno natural: no se trata de sumar volumen
-                de masa muscular por estética, sino de entrenar la fuerza justa
-                y la resistencia para volver al organismo lo más eficiente
-                posible.
-            </p>
-             -->
-        </div>
     </div>
 </section>
 
@@ -111,24 +83,57 @@ import marianoImg from "../assets/mariano.jpg";
         gap: 3rem;
         align-items: start;
     }
-    /* La columna visual (más corta) flota centrada respecto de la bio */
+    /* La columna visual es solo la foto, flotando centrada respecto de
+       la bio: los datos acompañantes (credenciales, quote) viven a la
+       derecha para que la imagen sea el protagonista absoluto */
     .about-visual {
         position: relative;
         align-self: center;
     }
+    /* Sin marco: la foto no es un recuadro, es un bloque que se funde
+       con el fondo por sus cuatro bordes (el velo de .border-effect
+       hace el trabajo). overflow: hidden solo recorta el zoom leve. */
     .frame-container {
         position: relative;
-        transform: skewX(-3deg);
-        border: 3px solid var(--color-brand);
-        border-radius: 4px;
         overflow: hidden;
     }
     .frame-container :global(img) {
         width: 100%;
-        height: clamp(320px, 36vw, 470px);
+        height: clamp(340px, 39vw, 520px);
         object-fit: cover;
-        transform: skewX(3deg) scale(1.06);
-        filter: grayscale(20%);
+        transform: scale(1.06);
+        /* Tratamiento del hero: desaturada y sobria, para integrarse */
+        filter: grayscale(28%) brightness(0.85) contrast(1.06);
+    }
+
+    /* Velo de integración estilo hero: en cada borde la foto se va a
+       #0b0b0b (el color del fondo), así no se percibe ningún borde
+       duro. Arriba a la derecha queda un aura roja de marca muy sutil. */
+    .border-effect {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background:
+            radial-gradient(
+                circle at 85% 6%,
+                rgba(255, 42, 42, 0.14) 0%,
+                transparent 42%
+            ),
+            linear-gradient(
+                90deg,
+                rgba(11, 11, 11, 0.95) 0%,
+                transparent 22%,
+                transparent 78%,
+                rgba(11, 11, 11, 0.95) 100%
+            ),
+            linear-gradient(
+                0deg,
+                rgba(11, 11, 11, 0.9) 0%,
+                transparent 26%,
+                transparent 78%,
+                rgba(11, 11, 11, 0.82) 100%
+            );
     }
     .about-content {
         color: var(--color-text);
@@ -145,21 +150,44 @@ import marianoImg from "../assets/mariano.jpg";
         line-height: 1.5;
         margin-bottom: 1.5rem;
     }
-    .biography {
-        color: var(--color-text-muted);
-        line-height: 1.7;
-        font-size: 1.05rem;
-        margin-bottom: 2rem;
+    /* Stat de trayectoria (llegó del hero): número protagonista + tag */
+    .trayectoria-strip {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        margin-top: 0.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-border-strong);
+        max-width: 420px;
     }
 
-    /* Credenciales (ahora bajo la imagen, en la columna visual) */
+    .trayectoria-numero {
+        font-size: 3.2rem;
+        font-weight: 900;
+        color: var(--color-brand);
+        line-height: 1;
+        letter-spacing: -1px;
+        display: inline-block;
+        transform: skewX(-6deg);
+    }
+
+    .trayectoria-texto {
+        margin: 0;
+        font-size: 0.82rem;
+        line-height: 1.45;
+        color: var(--color-text-muted);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Credenciales al pie de la bio: sin divisor propio — el strip de
+       trayectoria ya corta arriba; esta franja es una continuación */
     .credenciales {
         display: flex;
-        gap: 2.5rem;
+        gap: 2rem;
         flex-wrap: wrap;
-        margin: 2rem 0 0;
-        border-top: 1px solid var(--color-border-strong);
-        padding-top: 1.75rem;
+        margin: 2.4rem 0 0;
     }
 
     .credencial-item {

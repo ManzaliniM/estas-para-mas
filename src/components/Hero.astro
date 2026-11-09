@@ -51,14 +51,6 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
                     >Ver actividades</a
                 >
             </div>
-
-            <!-- Franja de estadísticas de impacto -->
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">33+</span>
-                    <span class="stat-label">Años de<br />trayectoria</span>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -74,10 +66,8 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
         padding: 4rem 2rem;
         overflow: hidden;
         position: relative;
-        font-family:
-            system-ui,
-            -apple-system,
-            sans-serif;
+        /* Sin font-family propio: hereda la del body (global.css) —
+           la de acá era una pila reducida que se desviaba del resto */
     }
 
     .hero-container {
@@ -207,7 +197,6 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
         line-height: 1.6;
         color: var(--color-text-secondary);
         margin-bottom: 2.5rem;
-        max-width: 100%;
     }
 
     .hero-description strong {
@@ -219,7 +208,8 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
-        margin-bottom: 3.5rem;
+        /* sin margen inferior: los CTAs son el último elemento y el
+           centrado vertical queda parejo, sin un empujón fantasma */
     }
 
     .btn {
@@ -242,7 +232,6 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
         background-color: var(--color-brand-hover);
         transform: translateY(-2px);
         box-shadow: 0 4px 15px var(--color-brand-shadow);
-        /* transform: skewX(-6deg) scale(1.05); */
     }
 
     .btn-cta-secondary {
@@ -255,47 +244,12 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
         background-color: var(--color-text);
         color: var(--color-background);
         transform: translateY(-2px);
-        /* transform: skewX(-6deg) scale(1.05); */
     }
 
-    /* Franja de estadísticas de impacto */
-    .hero-stats {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        border-top: 1px solid var(--color-border-strong);
-        padding-top: 2rem;
-    }
-
-    .stat-item {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-    }
-
-    .stat-number {
-        font-size: 2.4rem;
-        font-weight: 900;
-        color: var(--color-brand);
-        line-height: 1;
-        letter-spacing: -1px;
-        display: inline-block;
-        transform: skewX(-6deg);
-    }
-
-    .stat-label {
-        font-size: 0.78rem;
-        line-height: 1.35;
-        color: var(--color-text-muted);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .stat-divider {
-        width: 1px;
-        height: 44px;
-        background-color: var(--color-border-strong);
+    /* Teclado: el foco se ve claro sobre el negro (contraste AA) */
+    .btn:focus-visible {
+        outline: 3px solid var(--color-brand);
+        outline-offset: 3px;
     }
 
     /* ====== RESPONSIVE (Celulares) ====== */
@@ -322,20 +276,6 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
 
         .btn {
             width: 100%;
-        }
-
-        .hero-stats {
-            flex-wrap: wrap;
-            gap: 1.25rem;
-            row-gap: 1.25rem;
-        }
-
-        .stat-divider {
-            display: none;
-        }
-
-        .stat-number {
-            font-size: 1.8rem;
         }
     }
 </style>

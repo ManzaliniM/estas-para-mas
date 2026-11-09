@@ -75,6 +75,7 @@ const sponsors = [
             href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
             target="_blank"
             rel="noopener noreferrer"
+            class="cta-sponsor"
         >
             Conversar por WhatsApp
             <Icon name="arrow" size="1rem" strokeWidth={2.2} />
@@ -229,7 +230,7 @@ const sponsors = [
         font-size: 1rem;
     }
 
-    .sponsor-cta a {
+    .cta-sponsor {
         display: inline-flex;
         align-items: center;
         gap: 0.55rem;
@@ -249,7 +250,7 @@ const sponsors = [
             border-color 0.2s ease;
     }
 
-    .sponsor-cta a:hover {
+    .cta-sponsor:hover {
         background-color: var(--color-brand);
         color: var(--color-text);
         border-color: var(--color-brand);

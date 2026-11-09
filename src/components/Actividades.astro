@@ -150,10 +150,10 @@ const semana = [
             <h2>Nuestras <span class="highlight">Actividades</span></h2>
             <p>
                 Entrenamos de manera inteligente, adaptándonos a tus objetivos.
-                <br />La cuota cubre todas las actividades, vos sos libre de
-                elegir a cuáles te presentás
+                <br />La cuota cubre todas las actividades: vos sos libre de
+                elegir a cuáles te presentás. La única excepción es la pileta
+                libre de UP, que pide inscripción aparte.
             </p>
-            <!-- a excepción de Natación, que requiere inscripción aparte en UP. -->
         </div>
 
         <div class="actividades-grid">
@@ -181,14 +181,14 @@ const semana = [
                 schedules={[
                     {
                         dias: "Lunes, Miércoles y Viernes",
-                        hora: "16:00",
-                        lugar: "Con Tutto, desde el gimnasio",
+                        hora: "14:00",
+                        lugar: "Desde el gimnasio",
                         lugarUrl: MAPS.misiones,
                     },
                     {
                         dias: "Lunes, Miércoles y Viernes",
-                        hora: "14:00",
-                        lugar: "Desde el gimnasio",
+                        hora: "16:00",
+                        lugar: "Trota con Tutto, desde el gimnasio",
                         lugarUrl: MAPS.misiones,
                     },
                     {
@@ -262,6 +262,11 @@ const semana = [
                 <h3>
                     LA SEMANA <span class="highlight">EN UN VISTAZO</span>
                 </h3>
+                <p>
+                    Los horarios pueden cambiar según el mes: cada cambio se
+                    avisa primero en el grupo de WhatsApp y a la brevedad
+                    queda actualizado en el sitio.
+                </p>
             </div>
 
             <div class="semana-grid">
@@ -300,7 +305,8 @@ const semana = [
             </div>
 
             <!-- EL COMBINADO DEL SÁBADO: modalidad flexible de los sábados, sin turno fijo -->
-            <div class="combinado-strip" data-reveal>
+            <!-- Sin data-reveal propio: ya entra con la revelación del semana-block (evita doble animación) -->
+            <div class="combinado-strip">
                 <div class="combinado-icon">
                     <Icon name="loop" size="1.7rem" strokeWidth={1.6} />
                 </div>
@@ -425,7 +431,6 @@ const semana = [
     .dia-card {
         background-color: var(--color-surface);
         border: 1px solid var(--color-border-strong);
-        border-top: 3px solid var(--color-brand);
         border-radius: 10px;
         padding: 1.4rem 1.5rem;
         transition:
@@ -436,7 +441,7 @@ const semana = [
 
     .dia-card:hover {
         transform: translateY(-4px);
-        border-color: var(--color-border-hover);
+        border-color: var(--color-brand);
         background-color: var(--color-surface-raised);
     }
 

@@ -1,6 +1,7 @@
 ---
 // src/components/Header.astro
 import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
+import Icon from "./Icon.astro";
 ---
 
 <header class="site-header" id="site-header">
@@ -17,8 +18,8 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
         >
             <ul>
                 <li><a href="#actividades">Actividades</a></li>
-                <li><a href="#objetivos">Objetivos</a></li>
                 <li><a href="#sobre-mariano">Sobre Mariano</a></li>
+                <li><a href="#comunidad">Comunidad</a></li>
                 <li><a href="#preguntas-frecuentes">Dudas</a></li>
                 <li><a href="#contacto">Contacto</a></li>
                 <!-- CTA duplicado en el panel para mobile -->
@@ -39,8 +40,10 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
                 class="btn-nav-contacto"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="¡Sumate! — Escribinos por WhatsApp"
             >
-                ¡Sumate!
+                <Icon name="whatsapp" size="1.1rem" strokeWidth={1.8} />
+                <span class="btn-nav-contacto-texto">¡Sumate!</span>
             </a>
 
             <!-- Botón hamburguesa (solo mobile) -->
@@ -233,6 +236,9 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
     }
 
     .btn-nav-contacto {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
         background-color: var(--color-brand);
         color: var(--color-text);
         text-decoration: none;
@@ -253,6 +259,11 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
         background-color: var(--color-brand-hover);
         transform: translateY(-2px);
         box-shadow: 0 8px 22px var(--color-brand-shadow);
+    }
+
+    /* Desktop: el ícono queda oculto, manda el texto */
+    .btn-nav-contacto :global(svg) {
+        display: none;
     }
 
     /* ====== HAMBURGUESA (oculta en desktop) ====== */
@@ -382,8 +393,18 @@ import { WA_NUMBER, WA_MSG } from "../data/contacto.js";
     }
 
     @media (max-width: 560px) {
+        /* CTA compacto: solo el ícono de WhatsApp junto a la hamburguesa */
         .btn-nav-contacto {
-            display: none; /* en mobile manda el CTA del panel + hero */
+            padding: 0.55rem 0.6rem;
+            margin-right: 0.35rem;
+        }
+
+        .btn-nav-contacto-texto {
+            display: none;
+        }
+
+        .btn-nav-contacto :global(svg) {
+            display: block;
         }
 
         .site-header,

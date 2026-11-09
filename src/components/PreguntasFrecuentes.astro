@@ -1,10 +1,13 @@
 ---
-// src/components/AccordionFAQ.astro
+// src/components/PreguntasFrecuentes.astro
+
+import Icon from "./Icon.astro";
 ---
 
 <section id="preguntas-frecuentes" class="faq-section">
     <div class="faq-container">
         <div class="faq-header" data-reveal>
+            <span class="section-tag">Preguntas frecuentes</span>
             <h2>¿TENÉS ALGUNA <span class="highlight">DUDA</span>?</h2>
             <p>
                 Despejá las preguntas más comunes antes de arrancar a entrenar
@@ -13,21 +16,11 @@
         </div>
 
         <div class="accordion">
-            <div class="accordion-item">
+            <div class="accordion-item" data-reveal>
                 <button class="accordion-trigger">
-                    <span>¿Necesito tener experiencia previa?</span>
+                    <span>¿Necesito tener <span class="highlight">experiencia previa</span>?</span>
                     <span class="icon"
-                        ><svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            aria-hidden="true"
-                        >
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg></span
+                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
                     >
                 </button>
                 <div class="accordion-panel">
@@ -41,21 +34,11 @@
                 </div>
             </div>
 
-            <div class="accordion-item">
+            <div class="accordion-item" data-reveal>
                 <button class="accordion-trigger">
-                    <span>¿Puedo ir solamente al gimnasio?</span>
+                    <span>¿Puedo ir <span class="highlight">solamente al gimnasio</span>?</span>
                     <span class="icon"
-                        ><svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            aria-hidden="true"
-                        >
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg></span
+                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
                     >
                 </button>
                 <div class="accordion-panel">
@@ -66,23 +49,14 @@
                 </div>
             </div>
 
-            <div class="accordion-item">
+            <div class="accordion-item" data-reveal>
                 <button class="accordion-trigger">
                     <span
-                        >¿Cómo me entero de los entrenamientos de cada semana?</span
+                        >¿<span class="highlight">Cómo me entero</span> de los
+                        entrenamientos de cada semana?</span
                     >
                     <span class="icon"
-                        ><svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            aria-hidden="true"
-                        >
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg></span
+                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
                     >
                 </button>
                 <div class="accordion-panel">
@@ -96,21 +70,11 @@
                 </div>
             </div>
 
-            <div class="accordion-item">
+            <div class="accordion-item" data-reveal>
                 <button class="accordion-trigger">
-                    <span>¿Cuánto cuesta?</span>
+                    <span>¿Cuánto <span class="highlight">cuesta</span>?</span>
                     <span class="icon"
-                        ><svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            aria-hidden="true"
-                        >
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg></span
+                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
                     >
                 </button>
                 <div class="accordion-panel">
@@ -122,21 +86,13 @@
                 </div>
             </div>
 
-            <div class="accordion-item">
+            <div class="accordion-item" data-reveal>
                 <button class="accordion-trigger">
-                    <span>¿Dónde entrenamos?</span>
+                    <span
+                        >¿<span class="highlight">Dónde</span> entrenamos?</span
+                    >
                     <span class="icon"
-                        ><svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            aria-hidden="true"
-                        >
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg></span
+                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
                     >
                 </button>
                 <div class="accordion-panel">
@@ -147,21 +103,11 @@
                 </div>
             </div>
 
-            <div class="accordion-item">
+            <div class="accordion-item" data-reveal>
                 <button class="accordion-trigger">
-                    <span>¿Cómo arranco?</span>
+                    <span>¿Cómo <span class="highlight">arranco</span>?</span>
                     <span class="icon"
-                        ><svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            aria-hidden="true"
-                        >
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg></span
+                        ><Icon name="chevron" size="1.3rem" strokeWidth={2.2} /></span
                     >
                 </button>
                 <div class="accordion-panel">
@@ -211,6 +157,10 @@
         text-align: center;
         margin-bottom: 3.5rem;
     }
+    .faq-header .section-tag {
+        display: inline-block;
+        margin-bottom: 0.75rem;
+    }
     h2 {
         font-size: 2.5rem;
         font-weight: 900;
@@ -245,8 +195,7 @@
         color: var(--color-text-secondary);
         padding: 1.5rem;
         font-size: 1.1rem;
-        font-weight: 550;
-        transform: skew(-4deg);
+        font-weight: 600;
         text-align: left;
         display: flex;
         justify-content: space-between;
@@ -278,12 +227,23 @@
     }
     /* Cuando el item está activo, mostramos el panel */
     .accordion-item.active .accordion-panel {
-        max-height: 200px; /* Un valor alto estimado para permitir la animación */
+        max-height: 40rem; /* valor alto: la respuesta se mide por contenido, no se trunca ni en mobile */
         padding-bottom: 1.5rem;
     }
     .accordion-panel p {
         color: var(--color-text-secondary);
         line-height: 1.6;
         margin: 0;
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 640px) {
+        .faq-section {
+            padding: 4.5rem 1.25rem;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+        }
     }
 </style>

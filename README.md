@@ -14,10 +14,3 @@ src/
 public/
 └── og-preview.jpg     # imagen 1200×630 para previews en redes
 ```
-
-## Contenido pendiente
-- [ ] Terminar de redactar FAQ.
-- [ ] Horarios de largada reales de los objetivos (`data-race` en `ProximosObjetivos.astro`).
-- [ ] Más notas de prensa / testimonios.
-- [ ] Horarios pileta liber + costo UP.
-- [ ] Seccion indumentaria.
